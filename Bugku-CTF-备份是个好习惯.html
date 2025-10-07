@@ -93,7 +93,7 @@
 <meta property="og:description" content="这题的话可以先从这个题目看应该是和备份有关系的，就会想到bak后缀。 打开网站是一段神秘代码 1d41d8cd98f00b204e9800998ecf8427ed41d8cd98f00b204e9800998ecf8427e 然后就下意识的查看网站源代码但并没有什么收获，只能转向目录扫描了，直接上御剑目录扫描。 发现有一个index.php.bak文件直接访问下载了一个备份文件，代码内容如下 12">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-01T13:07:49.000Z">
-<meta property="article:modified_time" content="2025-10-07T12:12:21.841Z">
+<meta property="article:modified_time" content="2025-10-07T12:37:12.387Z">
 <meta property="article:author" content="qingshen">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="WEB安全">
@@ -418,6 +418,8 @@
 <p>还有另一种方法：</p>
 <p>由于md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是相等的。</p>
 <p>所以可以也可以构建Payload:index.php?kkeyey1[]&#x3D;1&amp;kkeyey2[]&#x3D;2<br>同样能获得flag。</p>
+<hr>
+<p><strong>版权声明</strong><br><strong>作者</strong>: qingshen<br><strong>发布时间</strong>: 2025年10月1日<br><strong>原文链接</strong>: <a href="https://qsblog.top/Bugku-CTF-%E5%A4%87%E4%BB%BD%E6%98%AF%E4%B8%AA%E5%A5%BD%E4%B9%A0%E6%83%AF.html">https://qsblog.top/Bugku-CTF-%E5%A4%87%E4%BB%BD%E6%98%AF%E4%B8%AA%E5%A5%BD%E4%B9%A0%E6%83%AF.html</a><br><strong>许可协议</strong>: <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a><br><strong>转载说明</strong>: 转载请注明原文出处和作者信息</p>
 
       
     </div>
@@ -450,8 +452,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/%E4%B8%80%E6%AC%A1%E6%99%BA%E8%83%BD%E6%89%8B%E8%A1%A8%E7%9A%84%E6%9E%84%E6%83%B3.html" rel="next" title="一次智能手表的构想">
-                <i class="fa fa-chevron-left"></i> 一次智能手表的构想
+              <a href="/%E7%94%B5%E5%95%86%E5%B9%B3%E5%8F%B0%E5%90%8E%E5%8F%B0RCE%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%EF%BC%9A%E4%BB%8E%E5%BC%B1%E5%8F%A3%E4%BB%A4%E5%88%B00day%E5%88%A9%E7%94%A8.html" rel="next" title="电商平台后台RCE漏洞分析：从弱口令到0day利用">
+                <i class="fa fa-chevron-left"></i> 电商平台后台RCE漏洞分析：从弱口令到0day利用
               </a>
             
           </div>
@@ -550,7 +552,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -572,7 +574,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
