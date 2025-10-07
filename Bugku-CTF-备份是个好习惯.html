@@ -93,7 +93,7 @@
 <meta property="og:description" content="这题的话可以先从这个题目看应该是和备份有关系的，就会想到bak后缀。 打开网站是一段神秘代码 1d41d8cd98f00b204e9800998ecf8427ed41d8cd98f00b204e9800998ecf8427e 然后就下意识的查看网站源代码但并没有什么收获，只能转向目录扫描了，直接上御剑目录扫描。 发现有一个index.php.bak文件直接访问下载了一个备份文件，代码内容如下 12">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-01T13:07:49.000Z">
-<meta property="article:modified_time" content="2025-10-07T12:37:12.387Z">
+<meta property="article:modified_time" content="2025-10-07T13:13:40.603Z">
 <meta property="article:author" content="qingshen">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="WEB安全">
@@ -418,8 +418,14 @@
 <p>还有另一种方法：</p>
 <p>由于md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是相等的。</p>
 <p>所以可以也可以构建Payload:index.php?kkeyey1[]&#x3D;1&amp;kkeyey2[]&#x3D;2<br>同样能获得flag。</p>
-<hr>
-<p><strong>版权声明</strong><br><strong>作者</strong>: qingshen<br><strong>发布时间</strong>: 2025年10月1日<br><strong>原文链接</strong>: <a href="https://qsblog.top/Bugku-CTF-%E5%A4%87%E4%BB%BD%E6%98%AF%E4%B8%AA%E5%A5%BD%E4%B9%A0%E6%83%AF.html">https://qsblog.top/Bugku-CTF-%E5%A4%87%E4%BB%BD%E6%98%AF%E4%B8%AA%E5%A5%BD%E4%B9%A0%E6%83%AF.html</a><br><strong>许可协议</strong>: <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a><br><strong>转载说明</strong>: 转载请注明原文出处和作者信息</p>
+<div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); padding: 20px; border-radius: 12px; color: #2c3e50; margin: 30px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+
+<h3 id="📄-版权声明"><a href="#📄-版权声明" class="headerlink" title="📄 版权声明"></a>📄 版权声明</h3><div style="background: rgba(255,255,255,0.6); padding: 15px; border-radius: 8px; margin-top: 15px; backdrop-filter: blur(10px);">
+  
+<p><strong>👤 作者</strong>：qingshen<br><strong>📅 发布时间</strong>：2025年10月1日<br><strong>🔗 原文链接</strong>：<a href="https://qsblog.top/Bugku-CTF-%E5%A4%87%E4%BB%BD%E6%98%AF%E4%B8%AA%E5%A5%BD%E4%B9%A0%E6%83%AF.html">https://qsblog.top/Bugku-CTF-%E5%A4%87%E4%BB%BD%E6%98%AF%E4%B8%AA%E5%A5%BD%E4%B9%A0%E6%83%AF.html</a><br><strong>📜 许可协议</strong>：<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a><br><strong>💡 转载说明</strong>：转载请注明原文出处和作者信息</p>
+</div>
+</div>
+
 
       
     </div>
@@ -536,8 +542,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -604,6 +619,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%93%84-%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">📄 版权声明</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
