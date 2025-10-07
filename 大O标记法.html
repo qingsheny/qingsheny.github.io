@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="网络安全,编程,硬件开发,人工智能,技术博客,生活随笔" />
+  <meta name="keywords" content="数据结构,算法,性能优化,算法优化," />
 
 
 
@@ -85,14 +85,20 @@
 
 
 
-<meta name="description" content="qingshen的博客：分享网络安全、编程、人工智能和生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="qingshen&#39;s blog">
-<meta property="og:url" content="https://qsblog.top/archives/index.html">
+<meta name="description" content="以下是一份关于大O标记法（Big O Notation）的详细笔记，包括其定义、常见类型、规则，以及常见数据结构在各种操作下的时间复杂度汇总。  📘 大O标记法（Big O Notation）笔记一、什么是大O标记法？ 大O标记法用于描述算法在最坏情况下的时间复杂度或空间复杂度，即算法执行时间或所需空间随输入规模 $n$ 增长的渐进行为。 它关注的是增长趋势，忽略常数项和低阶项。  示例： 若某">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大O标记法">
+<meta property="og:url" content="https://qsblog.top/%E5%A4%A7O%E6%A0%87%E8%AE%B0%E6%B3%95.html">
 <meta property="og:site_name" content="qingshen&#39;s blog">
-<meta property="og:description" content="qingshen的博客：分享网络安全、编程、人工智能和生活">
+<meta property="og:description" content="以下是一份关于大O标记法（Big O Notation）的详细笔记，包括其定义、常见类型、规则，以及常见数据结构在各种操作下的时间复杂度汇总。  📘 大O标记法（Big O Notation）笔记一、什么是大O标记法？ 大O标记法用于描述算法在最坏情况下的时间复杂度或空间复杂度，即算法执行时间或所需空间随输入规模 $n$ 增长的渐进行为。 它关注的是增长趋势，忽略常数项和低阶项。  示例： 若某">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-10-07T13:26:45.000Z">
+<meta property="article:modified_time" content="2025-10-07T13:32:39.464Z">
 <meta property="article:author" content="qingshen">
+<meta property="article:tag" content="性能优化">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="算法优化">
 <meta name="twitter:card" content="summary">
 
 
@@ -123,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://qsblog.top/archives/"/>
+  <link rel="canonical" href="https://qsblog.top/大O标记法.html"/>
 
 
 
 
 
-  <title>Archive | qingshen's blog</title>
+  <title>大O标记法 | qingshen's blog</title>
   
 
 
@@ -158,7 +164,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -296,259 +302,575 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://qsblog.top/%E5%A4%A7O%E6%A0%87%E8%AE%B0%E6%B3%95.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qingshen's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">大O标记法</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2025-10-07T21:26:45+08:00">
+                2025-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 6 posts in total. Keep on posting.
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="url" rel="index">
+                    <span itemprop="name">人工智能</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2025">2025</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/%E5%A4%A7O%E6%A0%87%E8%AE%B0%E6%B3%95.html" itemprop="url">
-              
-                <span itemprop="name">大O标记法</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2025-10-07T21:26:45+08:00"
-              content="2025-10-07" >
-          10-07
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E4%BB%8EWindows%E5%AE%89%E8%A3%85Linux%EF%BC%88Ubuntu%EF%BC%89%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B.html" itemprop="url">
-              
-                <span itemprop="name">记录一次从Windows安装Linux（Ubuntu）的全过程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2025-10-07T15:26:43+08:00"
-              content="2025-10-07" >
-          10-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <p>以下是一份关于<strong>大O标记法（Big O Notation）<strong>的详细笔记，包括其定义、常见类型、规则，以及</strong>常见数据结构</strong>在各种操作下的<strong>时间复杂度</strong>汇总。</p>
+<hr>
+<h1 id="📘-大O标记法（Big-O-Notation）笔记"><a href="#📘-大O标记法（Big-O-Notation）笔记" class="headerlink" title="📘 大O标记法（Big O Notation）笔记"></a>📘 大O标记法（Big O Notation）笔记</h1><h2 id="一、什么是大O标记法？"><a href="#一、什么是大O标记法？" class="headerlink" title="一、什么是大O标记法？"></a>一、什么是大O标记法？</h2><ul>
+<li><strong>大O标记法</strong>用于描述算法在<strong>最坏情况</strong>下的<strong>时间复杂度</strong>或<strong>空间复杂度</strong>，即算法执行时间或所需空间随输入规模 $n$ 增长的<strong>渐进行为</strong>。</li>
+<li>它关注的是<strong>增长趋势</strong>，忽略常数项和低阶项。</li>
+</ul>
+<h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><ul>
+<li>若某算法执行时间为 $3n^2 + 5n + 10$，则其时间复杂度为 <strong>O(n²)</strong>。</li>
+</ul>
+<hr>
+<h2 id="二、常见的时间复杂度（从快到慢）"><a href="#二、常见的时间复杂度（从快到慢）" class="headerlink" title="二、常见的时间复杂度（从快到慢）"></a>二、常见的时间复杂度（从快到慢）</h2><table>
+<thead>
+<tr>
+<th>复杂度</th>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>O(1)</td>
+<td>常数时间</td>
+<td>执行时间与输入规模无关</td>
+</tr>
+<tr>
+<td>O(log n)</td>
+<td>对数时间</td>
+<td>常见于二分查找、平衡树操作</td>
+</tr>
+<tr>
+<td>O(n)</td>
+<td>线性时间</td>
+<td>遍历整个数据结构</td>
+</tr>
+<tr>
+<td>O(n log n)</td>
+<td>线性对数时间</td>
+<td>高效排序算法（如归并排序、快速排序平均情况）</td>
+</tr>
+<tr>
+<td>O(n²)</td>
+<td>平方时间</td>
+<td>嵌套循环，如冒泡排序</td>
+</tr>
+<tr>
+<td>O(n³)</td>
+<td>立方时间</td>
+<td>三层嵌套循环</td>
+</tr>
+<tr>
+<td>O(2ⁿ)</td>
+<td>指数时间</td>
+<td>如暴力解法的子集问题</td>
+</tr>
+<tr>
+<td>O(n!)</td>
+<td>阶乘时间</td>
+<td>如旅行商问题的暴力解法</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="三、大O的简化规则"><a href="#三、大O的简化规则" class="headerlink" title="三、大O的简化规则"></a>三、大O的简化规则</h2><ol>
+<li><strong>忽略常数项</strong>：O(5) → O(1)</li>
+<li><strong>保留最高阶项</strong>：O(n² + n) → O(n²)</li>
+<li><strong>乘法法则</strong>：嵌套循环相乘，如两层循环各 O(n) → O(n²)</li>
+<li><strong>加法法则</strong>：顺序执行取最大项，如 O(n) + O(log n) → O(n)</li>
+</ol>
+<hr>
+<h2 id="四、常见数据结构操作的时间复杂度汇总"><a href="#四、常见数据结构操作的时间复杂度汇总" class="headerlink" title="四、常见数据结构操作的时间复杂度汇总"></a>四、常见数据结构操作的时间复杂度汇总</h2><blockquote>
+<p>注：以下假设数据结构大小为 $n$，哈希表负载因子合理，树为平衡状态（如 AVL、红黑树）。</p>
+</blockquote>
+<h3 id="1-数组（Array）"><a href="#1-数组（Array）" class="headerlink" title="1. 数组（Array）"></a>1. 数组（Array）</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>索引访问（通过下标）</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>搜索（无序）</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>搜索（有序 + 二分）</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>插入（末尾）</td>
+<td>O(1)（均摊）</td>
+</tr>
+<tr>
+<td>插入（中间&#x2F;开头）</td>
+<td>O(n)（需移动元素）</td>
+</tr>
+<tr>
+<td>删除（末尾）</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>删除（中间&#x2F;开头）</td>
+<td>O(n)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="2-动态数组（如-Python-list、Java-ArrayList）"><a href="#2-动态数组（如-Python-list、Java-ArrayList）" class="headerlink" title="2. 动态数组（如 Python list、Java ArrayList）"></a>2. 动态数组（如 Python list、Java ArrayList）</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>访问</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>末尾插入</td>
+<td>O(1) <strong>均摊</strong>（扩容时 O(n)，但均摊后为 O(1)）</td>
+</tr>
+<tr>
+<td>中间插入&#x2F;删除</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td>O(n)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="3-链表（Linked-List）"><a href="#3-链表（Linked-List）" class="headerlink" title="3. 链表（Linked List）"></a>3. 链表（Linked List）</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>访问（按索引）</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>头部插入&#x2F;删除</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>尾部插入（无尾指针）</td>
+<td>O(n)；有尾指针 → O(1)</td>
+</tr>
+<tr>
+<td>中间插入&#x2F;删除（已知节点）</td>
+<td>O(1)（但定位节点需 O(n)）</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>双向链表（Doubly Linked List）操作复杂度类似，但支持双向遍历。</p>
+</blockquote>
+<hr>
+<h3 id="4-栈（Stack）"><a href="#4-栈（Stack）" class="headerlink" title="4. 栈（Stack）"></a>4. 栈（Stack）</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>push</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>pop</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>peek&#x2F;top</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>通常用数组或链表实现，均为 O(1)</p>
+</blockquote>
+<hr>
+<h3 id="5-队列（Queue）"><a href="#5-队列（Queue）" class="headerlink" title="5. 队列（Queue）"></a>5. 队列（Queue）</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enqueue（入队）</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>dequeue（出队）</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>peek</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>循环数组或链表实现，均为 O(1)</p>
+</blockquote>
+<hr>
+<h3 id="6-哈希表（Hash-Table-Dictionary-Map）"><a href="#6-哈希表（Hash-Table-Dictionary-Map）" class="headerlink" title="6. 哈希表（Hash Table &#x2F; Dictionary &#x2F; Map）"></a>6. 哈希表（Hash Table &#x2F; Dictionary &#x2F; Map）</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>平均情况</th>
+<th>最坏情况</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>插入</td>
+<td>O(1)</td>
+<td>O(n)（哈希冲突严重）</td>
+</tr>
+<tr>
+<td>查找</td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>实际应用中通常假设为 O(1)</p>
+</blockquote>
+<hr>
+<h3 id="7-二叉搜索树（BST）"><a href="#7-二叉搜索树（BST）" class="headerlink" title="7. 二叉搜索树（BST）"></a>7. 二叉搜索树（BST）</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>平衡 BST（如 AVL、红黑树）</th>
+<th>不平衡 BST（退化为链表）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>查找</td>
+<td>O(log n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>插入</td>
+<td>O(log n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>O(log n)</td>
+<td>O(n)</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>平衡树</strong>保证 O(log n)；普通 BST 最坏为 O(n)</p>
+</blockquote>
+<hr>
+<h3 id="8-堆（Heap，通常为二叉堆）"><a href="#8-堆（Heap，通常为二叉堆）" class="headerlink" title="8. 堆（Heap，通常为二叉堆）"></a>8. 堆（Heap，通常为二叉堆）</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>插入（push）</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>删除最大&#x2F;最小（pop）</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>获取最大&#x2F;最小（peek）</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>建堆（heapify）</td>
+<td>O(n)</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>常用于优先队列（Priority Queue）</p>
+</blockquote>
+<hr>
+<h3 id="9-图（Graph）"><a href="#9-图（Graph）" class="headerlink" title="9. 图（Graph）"></a>9. 图（Graph）</h3><ul>
+<li>表示方式影响复杂度：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>表示方式</th>
+<th>空间复杂度</th>
+<th>遍历邻接点</th>
+<th>判断边是否存在</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>邻接矩阵</td>
+<td>O(V²)</td>
+<td>O(V)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>邻接表</td>
+<td>O(V + E)</td>
+<td>O(度(v))</td>
+<td>O(度(v))（需遍历）</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>V &#x3D; 顶点数，E &#x3D; 边数</p>
+</blockquote>
+<hr>
+<h3 id="10-字符串（String）"><a href="#10-字符串（String）" class="headerlink" title="10. 字符串（String）"></a>10. 字符串（String）</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>访问字符</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>拼接（不可变字符串）</td>
+<td>O(n + m)</td>
+</tr>
+<tr>
+<td>子串查找（朴素）</td>
+<td>O(n·m)</td>
+</tr>
+<tr>
+<td>子串查找（KMP 等）</td>
+<td>O(n + m)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="五、常见算法时间复杂度参考"><a href="#五、常见算法时间复杂度参考" class="headerlink" title="五、常见算法时间复杂度参考"></a>五、常见算法时间复杂度参考</h2><table>
+<thead>
+<tr>
+<th>算法</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>冒泡排序、选择排序、插入排序</td>
+<td>O(n²)</td>
+</tr>
+<tr>
+<td>归并排序、堆排序</td>
+<td>O(n log n)</td>
+</tr>
+<tr>
+<td>快速排序（平均）</td>
+<td>O(n log n)；最坏 O(n²)</td>
+</tr>
+<tr>
+<td>二分查找</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>DFS &#x2F; BFS（图或树）</td>
+<td>O(V + E)</td>
+</tr>
+<tr>
+<td>Dijkstra（优先队列优化）</td>
+<td>O((V + E) log V)</td>
+</tr>
+<tr>
+<td>Floyd-Warshall</td>
+<td>O(V³)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="六、总结口诀（便于记忆）"><a href="#六、总结口诀（便于记忆）" class="headerlink" title="六、总结口诀（便于记忆）"></a>六、总结口诀（便于记忆）</h2><ul>
+<li><strong>数组查快改慢，链表改快查慢</strong></li>
+<li><strong>哈希平均 O(1)，最坏退化 O(n)</strong></li>
+<li><strong>平衡树稳 O(log n)，普通树可能变链</strong></li>
+<li><strong>堆适合取最值，建堆只需 O(n)</strong></li>
+<li><strong>排序最快 O(n log n)，比较排序下限</strong></li>
+</ul>
+<div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); padding: 20px; border-radius: 12px; color: #2c3e50; margin: 30px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
 
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/Bugku-CTF-%E5%A4%87%E4%BB%BD%E6%98%AF%E4%B8%AA%E5%A5%BD%E4%B9%A0%E6%83%AF.html" itemprop="url">
-              
-                <span itemprop="name">Bugku-CTF-备份是个好习惯</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2025-10-01T21:07:49+08:00"
-              content="2025-10-01" >
-          10-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+<h3 id="📄-版权声明"><a href="#📄-版权声明" class="headerlink" title="📄 版权声明"></a>📄 版权声明</h3><div style="background: rgba(255,255,255,0.6); padding: 15px; border-radius: 8px; margin-top: 15px; backdrop-filter: blur(10px);">
+  
+<p><strong>👤 作者</strong>：qingshen<br><strong>📅 发布时间</strong>：2025年10月7日<br><strong>🔗 原文链接</strong>：<a href="https://qsblog.top/%E5%A4%A7O%E6%A0%87%E8%AE%B0%E6%B3%95.html">https://qsblog.top/%E5%A4%A7O%E6%A0%87%E8%AE%B0%E6%B3%95.html</a><br><strong>📜 许可协议</strong>：<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a><br><strong>💡 转载说明</strong>：转载请注明原文出处和作者信息</p>
+</div>
+</div>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/%E7%94%B5%E5%95%86%E5%B9%B3%E5%8F%B0%E5%90%8E%E5%8F%B0RCE%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%EF%BC%9A%E4%BB%8E%E5%BC%B1%E5%8F%A3%E4%BB%A4%E5%88%B00day%E5%88%A9%E7%94%A8.html" itemprop="url">
-              
-                <span itemprop="name">电商平台后台RCE漏洞分析：从弱口令到0day利用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2025-09-06T12:00:00+08:00"
-              content="2025-09-06" >
-          09-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/SQL%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5.html" itemprop="url">
-              
-                <span itemprop="name">SQL联合查询注入</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2025-08-06T12:00:00+08:00"
-              content="2025-08-06" >
-          08-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/KNN%E7%8C%AB%E7%8B%97%E5%88%86%E7%B1%BB.html" itemprop="url">
-              
-                <span itemprop="name">KNN猫狗分类</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2025-08-03T11:21:11+08:00"
-              content="2025-08-03" >
-          08-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          
+            <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag"># 性能优化</a>
+          
+            <a href="/tags/%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96/" rel="tag"># 算法优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E4%BB%8EWindows%E5%AE%89%E8%A3%85Linux%EF%BC%88Ubuntu%EF%BC%89%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B.html" rel="next" title="记录一次从Windows安装Linux（Ubuntu）的全过程">
+                <i class="fa fa-chevron-left"></i> 记录一次从Windows安装Linux（Ubuntu）的全过程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -556,6 +878,31 @@
 
 
           
+
+  
+    <!-- Giscus Comments -->
+    <div class="comments" id="comments">
+      
+<script src="https://giscus.app/client.js"
+        data-repo="qingsheny/blog-comments"
+        data-repo-id="R_kgDOP9ggbg"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOP9ggbs4CwVQw"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+  
+
+
         </div>
         
           
@@ -575,8 +922,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -643,6 +999,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%98-%E5%A4%A7O%E6%A0%87%E8%AE%B0%E6%B3%95%EF%BC%88Big-O-Notation%EF%BC%89%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">📘 大O标记法（Big O Notation）笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7O%E6%A0%87%E8%AE%B0%E6%B3%95%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">一、什么是大O标记法？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">示例：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%B8%B8%E8%A7%81%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%88%E4%BB%8E%E5%BF%AB%E5%88%B0%E6%85%A2%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">二、常见的时间复杂度（从快到慢）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%A4%A7O%E7%9A%84%E7%AE%80%E5%8C%96%E8%A7%84%E5%88%99"><span class="nav-number">1.3.</span> <span class="nav-text">三、大O的简化规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%93%8D%E4%BD%9C%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%B1%87%E6%80%BB"><span class="nav-number">1.4.</span> <span class="nav-text">四、常见数据结构操作的时间复杂度汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%95%B0%E7%BB%84%EF%BC%88Array%EF%BC%89"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. 数组（Array）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84%EF%BC%88%E5%A6%82-Python-list%E3%80%81Java-ArrayList%EF%BC%89"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. 动态数组（如 Python list、Java ArrayList）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%93%BE%E8%A1%A8%EF%BC%88Linked-List%EF%BC%89"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. 链表（Linked List）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%A0%88%EF%BC%88Stack%EF%BC%89"><span class="nav-number">1.4.4.</span> <span class="nav-text">4. 栈（Stack）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E9%98%9F%E5%88%97%EF%BC%88Queue%EF%BC%89"><span class="nav-number">1.4.5.</span> <span class="nav-text">5. 队列（Queue）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%88Hash-Table-Dictionary-Map%EF%BC%89"><span class="nav-number">1.4.6.</span> <span class="nav-text">6. 哈希表（Hash Table &#x2F; Dictionary &#x2F; Map）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%EF%BC%88BST%EF%BC%89"><span class="nav-number">1.4.7.</span> <span class="nav-text">7. 二叉搜索树（BST）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E5%A0%86%EF%BC%88Heap%EF%BC%8C%E9%80%9A%E5%B8%B8%E4%B8%BA%E4%BA%8C%E5%8F%89%E5%A0%86%EF%BC%89"><span class="nav-number">1.4.8.</span> <span class="nav-text">8. 堆（Heap，通常为二叉堆）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E5%9B%BE%EF%BC%88Graph%EF%BC%89"><span class="nav-number">1.4.9.</span> <span class="nav-text">9. 图（Graph）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%88String%EF%BC%89"><span class="nav-number">1.4.10.</span> <span class="nav-text">10. 字符串（String）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%8F%82%E8%80%83"><span class="nav-number">1.5.</span> <span class="nav-text">五、常见算法时间复杂度参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%80%BB%E7%BB%93%E5%8F%A3%E8%AF%80%EF%BC%88%E4%BE%BF%E4%BA%8E%E8%AE%B0%E5%BF%86%EF%BC%89"><span class="nav-number">1.6.</span> <span class="nav-text">六、总结口诀（便于记忆）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%93%84-%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"><span class="nav-number">1.6.1.</span> <span class="nav-text">📄 版权声明</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -834,6 +1206,10 @@ setInterval("createtime()",250);
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1208,26 +1584,6 @@ setInterval("createtime()",250);
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
