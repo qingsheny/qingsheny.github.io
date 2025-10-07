@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+
+Sitemap: https://qsblog.top/sitemap.xml
+Sitemap: https://qsblog.top/baidusitemap.xml
