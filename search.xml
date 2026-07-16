@@ -144,33 +144,6 @@ MySQL 版本信息
       </tags>
   </entry>
   <entry>
-    <title>电商平台后台RCE漏洞分析：从弱口令到0day利用</title>
-    <url>/2025/09/06/%E7%94%B5%E5%95%86%E5%B9%B3%E5%8F%B0%E5%90%8E%E5%8F%B0RCE%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%EF%BC%9A%E4%BB%8E%E5%BC%B1%E5%8F%A3%E4%BB%A4%E5%88%B00day%E5%88%A9%E7%94%A8/</url>
-    <content><![CDATA[<p>近日，朋友发现某电商平台存在一个高危漏洞，将数据包发给我进行审计。首先使用Seay源代码审计系统对代码包进行自动化扫描，系统报告了300+个潜在漏洞点，我将结果丢给AI，从中筛选出1个最可能被利用的高危远程代码漏洞。</p>
-<h2 id="漏洞位置"><a href="#漏洞位置" class="headerlink" title="漏洞位置"></a>漏洞位置</h2><p><code>app/common/logic/admin/config.php</code>文件中的配置写入功能存在代码注入漏洞。</p>
-<h2 id="漏洞代码"><a href="#漏洞代码" class="headerlink" title="漏洞代码"></a>漏洞代码</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$code</span> = <span class="string">&quot;return [</span></span><br><span class="line"><span class="string">    &#x27;url&#x27; =&gt; &#x27;&quot;</span> . <span class="variable">$param</span>[<span class="string">&#x27;m_url&#x27;</span>] . <span class="string">&quot;&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;title&#x27; =&gt; &#x27;&quot;</span> . <span class="variable">$param</span>[<span class="string">&#x27;title&#x27;</span>] . <span class="string">&quot;&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;map_key&#x27; =&gt; &#x27;&quot;</span> . <span class="variable">$param</span>[<span class="string">&#x27;map_key&#x27;</span>] . <span class="string">&quot;&#x27;</span></span><br><span class="line"><span class="string">]&quot;</span>;</span><br><span class="line"><span class="variable">$code</span> = <span class="string">&quot;&lt;?php\n &quot;</span> . <span class="variable">$code</span> . <span class="string">&quot;;&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">file_put_contents</span>(<span class="title function_ invoke__">config_path</span>() . <span class="string">&quot;site.php&quot;</span>, <span class="variable">$code</span>);</span><br></pre></td></tr></table></figure>
-
-<p>漏洞原理</p>
-<p>该段代码直接将用户输入的参数（$param[‘title’]等）拼接至PHP配置文件中，未做任何过滤处理。攻击者可以通过注入PHP代码，实现远程代码执行。<br>漏洞复现</p>
-<p>在后台修改网站标题处输入：.phpinfo().</p>
-<p>系统生成的配置文件内容变为：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">return</span> [</span><br><span class="line">    <span class="string">&#x27;url&#x27;</span> =&gt; <span class="string">&#x27;http://example.com&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;title&#x27;</span> =&gt; <span class="string">&#x27;&#x27;</span>.<span class="title function_ invoke__">phpinfo</span>().<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;map_key&#x27;</span> =&gt; <span class="string">&#x27;key_value&#x27;</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
-<p>访问&#x2F;config&#x2F;site.php文件即可触发phpinfo()执行。</p>
-<p>但该漏洞需要后台权限才能利用，我发现管理员后台账号密码默认为admin。</p>
-<p>在FOFA找到百个资产，测试了10个有4个存在弱口令，RCE也验证成功。</p>
-<p>因此攻击链可完整形成：</p>
-<p>弱口令进入后台 → 利用RCE漏洞获取服务器权限</p>
-]]></content>
-      <categories>
-        <category>网络安全</category>
-      </categories>
-      <tags>
-        <tag>WEB安全</tag>
-        <tag>代码审计</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>edusrc账号信息收集</title>
     <url>/2026/02/04/edusrc%E8%B4%A6%E5%8F%B7%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</url>
     <content><![CDATA[<h2 id="⚠️-安全声明"><a href="#⚠️-安全声明" class="headerlink" title="⚠️ 安全声明"></a>⚠️ 安全声明</h2><p>本文章未经许可严禁转载。文中内容仅限交流学习，严禁用于商业及非法用途，未经授权的渗透行为皆为违法行为，违规使用后果自负，与本作者无关。</p>
@@ -202,6 +175,31 @@ MySQL 版本信息
         <tag>edusrc</tag>
         <tag>src</tag>
         <tag>渗透测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>某医院SRC存在水平越权</title>
+    <url>/2026/07/16/%E6%9F%90%E5%8C%BB%E9%99%A2SRC%E5%AD%98%E5%9C%A8%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83/</url>
+    <content><![CDATA[<h1 id="某医院SRC存在水平越权"><a href="#某医院SRC存在水平越权" class="headerlink" title="某医院SRC存在水平越权"></a>某医院SRC存在水平越权</h1><h2 id="⚠️-安全声明"><a href="#⚠️-安全声明" class="headerlink" title="⚠️ 安全声明"></a>⚠️ 安全声明</h2><p>本教程中内容仅限交流学习，严禁用于商业及非法用途，未经授权的渗透行为皆为违法行为，违规使用后果自负，与本作者无关。</p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>收集子域名：<strong>某个登录系统</strong></p>
+<p><img src="/images/QQ_1782903440669.png"></p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>因为有二次验证及图形验证码，这里不考虑爆破</p>
+<p>查看微信登录，弹出二维码，扫码后登录成功</p>
+<p>可能采用了扫码自动注册登录，进入系统</p>
+<p><img src="/images/QQ_1782903833107.png"></p>
+<p>点击注册儿童，发现需填写身份证号等信息，随便填写</p>
+<p>注册后打开切换儿童可以查看儿童信息，显示刚刚填写的敏感信息</p>
+<p><img src="/images/QQ_1782904122118.png"></p>
+<p>发现链接中有疑似id参数</p>
+<p><img src="/images/QQ_1782904071537.png"></p>
+<p>改变id参数可查看其他儿童信息</p>
+]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>src</tag>
+        <tag>web安全</tag>
       </tags>
   </entry>
   <entry>
@@ -352,6 +350,33 @@ MySQL 版本信息
         <tag>Ubuntu</tag>
         <tag>系统安装</tag>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>电商平台后台RCE漏洞分析：从弱口令到0day利用</title>
+    <url>/2025/09/06/%E7%94%B5%E5%95%86%E5%B9%B3%E5%8F%B0%E5%90%8E%E5%8F%B0RCE%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%EF%BC%9A%E4%BB%8E%E5%BC%B1%E5%8F%A3%E4%BB%A4%E5%88%B00day%E5%88%A9%E7%94%A8/</url>
+    <content><![CDATA[<p>近日，朋友发现某电商平台存在一个高危漏洞，将数据包发给我进行审计。首先使用Seay源代码审计系统对代码包进行自动化扫描，系统报告了300+个潜在漏洞点，我将结果丢给AI，从中筛选出1个最可能被利用的高危远程代码漏洞。</p>
+<h2 id="漏洞位置"><a href="#漏洞位置" class="headerlink" title="漏洞位置"></a>漏洞位置</h2><p><code>app/common/logic/admin/config.php</code>文件中的配置写入功能存在代码注入漏洞。</p>
+<h2 id="漏洞代码"><a href="#漏洞代码" class="headerlink" title="漏洞代码"></a>漏洞代码</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$code</span> = <span class="string">&quot;return [</span></span><br><span class="line"><span class="string">    &#x27;url&#x27; =&gt; &#x27;&quot;</span> . <span class="variable">$param</span>[<span class="string">&#x27;m_url&#x27;</span>] . <span class="string">&quot;&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;title&#x27; =&gt; &#x27;&quot;</span> . <span class="variable">$param</span>[<span class="string">&#x27;title&#x27;</span>] . <span class="string">&quot;&#x27;,</span></span><br><span class="line"><span class="string">    &#x27;map_key&#x27; =&gt; &#x27;&quot;</span> . <span class="variable">$param</span>[<span class="string">&#x27;map_key&#x27;</span>] . <span class="string">&quot;&#x27;</span></span><br><span class="line"><span class="string">]&quot;</span>;</span><br><span class="line"><span class="variable">$code</span> = <span class="string">&quot;&lt;?php\n &quot;</span> . <span class="variable">$code</span> . <span class="string">&quot;;&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">file_put_contents</span>(<span class="title function_ invoke__">config_path</span>() . <span class="string">&quot;site.php&quot;</span>, <span class="variable">$code</span>);</span><br></pre></td></tr></table></figure>
+
+<p>漏洞原理</p>
+<p>该段代码直接将用户输入的参数（$param[‘title’]等）拼接至PHP配置文件中，未做任何过滤处理。攻击者可以通过注入PHP代码，实现远程代码执行。<br>漏洞复现</p>
+<p>在后台修改网站标题处输入：.phpinfo().</p>
+<p>系统生成的配置文件内容变为：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">return</span> [</span><br><span class="line">    <span class="string">&#x27;url&#x27;</span> =&gt; <span class="string">&#x27;http://example.com&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;title&#x27;</span> =&gt; <span class="string">&#x27;&#x27;</span>.<span class="title function_ invoke__">phpinfo</span>().<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;map_key&#x27;</span> =&gt; <span class="string">&#x27;key_value&#x27;</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>访问&#x2F;config&#x2F;site.php文件即可触发phpinfo()执行。</p>
+<p>但该漏洞需要后台权限才能利用，我发现管理员后台账号密码默认为admin。</p>
+<p>在FOFA找到百个资产，测试了10个有4个存在弱口令，RCE也验证成功。</p>
+<p>因此攻击链可完整形成：</p>
+<p>弱口令进入后台 → 利用RCE漏洞获取服务器权限</p>
+]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>WEB安全</tag>
+        <tag>代码审计</tag>
       </tags>
   </entry>
 </search>
